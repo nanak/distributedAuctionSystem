@@ -1,0 +1,33 @@
+commit dc9d3fc5693200713bb33002e44b4f78793bb350
+Author: DanielDimitrijevic <ddimitrijevic@student.tgm.ac.at>
+Date:   Tue Dec 10 20:31:30 2013 +0100
+
+    simple Socket Prototype with echo stream
+
+commit 70cf8c86079a0c160ec6bb0468cb9f7ac9807208
+Author: tlins <tobias.lins@student.tgm.ac.at>
+Date:   Tue Dec 10 14:37:58 2013 +0100
+
+    client server working first message
+
+commit 22facfc4d841053c08431f4c6c69f0e4f16e5966
+Author: tlins <tobias.lins@student.tgm.ac.at>
+Date:   Tue Dec 10 10:28:27 2013 +0100
+
+    2 packages with java sources
+    
+    added generated classes
+    please link files+folder to eclipse
+
+commit 2f8c5067d554f053077d52d727526b6d33915f3a
+Author: Michaela Lipovits <m.lipovits@gmail.com>
+Date:   Mon Dec 9 09:07:52 2013 +0100
+
+    simple DatagramSocket example, where a class named Server sends a
+    Message to the Client (not well commented yet)
+
+commit c1747013d997167b84f24904344b65b15ab6876b
+Author: Nanak Tattyrek <nanak@tattyrek.at>
+Date:   Wed Nov 27 02:14:21 2013 -0800
+
+    Initial commit
