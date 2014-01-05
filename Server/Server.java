@@ -1,8 +1,9 @@
 package Server;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
 
-public class Server extends User {
+public class Server{
  
 	private int tcpport;
 	 
@@ -22,7 +23,6 @@ public class Server extends User {
 	 
 	private User[] user;
 	 
-	private WatchDog watchDog;
 	 
 	public void Server(int tcp) {
 	 
