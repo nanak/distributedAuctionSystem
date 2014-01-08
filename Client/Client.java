@@ -1,5 +1,11 @@
 package Client;
 
+/**
+ * Der Client des Auction Systems
+ * Empfaengt 
+ * @author Tobi
+ *
+ */
 public class Client {
  
 	private String host;
@@ -12,8 +18,8 @@ public class Client {
 	 
 	private ServerListener serverListener;
 	 
-	public boolean Client(String host, int tcp, int udp) {
-		return false;
+	public Client(String host, int tcp, int udp) {
+	
 	}
 	 
 	public boolean send() {

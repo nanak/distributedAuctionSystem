@@ -13,8 +13,6 @@ public class User {
 	 
 	private Date lastSeen;
 	 
-	private Notification[] notification;
-	 
 	public String getName() {
 		return null;
 	}
