@@ -8,12 +8,10 @@ package Client;
  *
  */
 public class Client {
- 
-	private String host;
-	 
-	private int tcpport;
-	 
-	private int udpport;
+	
+	private TCPConnection tcp;
+	
+	private UDPConnection udp;
 	 
 	private DatagramSocket udpsocket;
 	 
@@ -26,9 +24,8 @@ public class Client {
 	 * @param udp	UDP port of the server
 	 */
 	public Client(String host, int tcp, int udp) {
-		this.host=host;
-		this.tcpport=tcp;
-		this.udpport=udp;
+		this.tcp=new TCPConnection(host, tcp);
+		this.udp=new UDPConnection(host, udp);
 	}
 	
 	/**
