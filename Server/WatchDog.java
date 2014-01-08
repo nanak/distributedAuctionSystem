@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class WatchDog {
  
-	public void WatchDog(ArrayList auctions, ArrayList userlist) {
+	public WatchDog(ArrayList auctions, ArrayList userlist) {
 	 
 	}
 	 
