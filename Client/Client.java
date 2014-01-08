@@ -13,8 +13,6 @@ public class Client {
 	
 	private UDPConnection udp;
 	 
-	private DatagramSocket udpsocket;
-	 
 	private ServerListener serverListener;
 	
 	/**
