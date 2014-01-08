@@ -5,7 +5,7 @@ package Server;
  * @author Tobi
  *
  */
-public class LoginCommand extends User implements Command {
+public class LoginCommand implements Command {
 	/**
 	 * executes the command
 	 * @param cmd command to execute
