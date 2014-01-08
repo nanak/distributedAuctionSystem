@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="chat" default="compile" basedir=".">
+    
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+	<property name="lib.dir" value="lib"/>
+	<property name="doc.dir" value="doc"/>
+
+	<!-- Tast swtjar definieren Quelle: http://mchr3k.github.com/swtjar/ -->
+    <taskdef name="swtjar" classname="org.swtjar.ant.SWTJarTask"
+                       classpath="./lib/swtjar.jar"/> 
+	
+	<condition property="isLinux">
+		<os family="unix" />
+	</condition>
+	<condition property="isWindows32">
+		<and>
+			<os family="windows" />
+			<os arch="i386" />
+		</and>
+	</condition>
+	<condition property="isWindows64">
+		<and>
+			<os family="windows" />
+
+		</and>
+	</condition>
+
+	<path id="project.classpath">
+		<pathelement location="${build.dir}" />
+		<fileset dir="lib">
+			<include if="isWindows32" name="swt-win32-3.6.2.jar" />
+			<include if="isWindows64" name="swt-win64-3.6.2.jar" />
+			<include if="isLinux" name="swt-linux32-3.6.2.jar" />
+		</fileset>
+	</path>
+	
+    
+    <target name="compile" description="Compile project.">
+        <mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}"
+               classpathref="project.classpath"
+               debug="true" deprecation="true"
+               includeantruntime="false"/>
+    </target>
+    				   
+	
+	<target name="jar" depends="compile">
+	<!-- Verwenden des targets swtjat  Quelle: http://mchr3k.github.com/swtjar/ -->
+		<swtjar jarfile="Chat.jar"
+			targetmainclass="ChatTest"
+			swtversion="3.6.2">
+			<fileset dir="${build.dir}" includes="**/*.class"/>
+			<fileset dir="./lib" includes="swt-*-3.6.2.jar" />
+			<fileset dir=".">
+				<include name="**/${doc.dir}/**"/>
+				<include name="**/${lib.dir}/**"/>
+				<include name="**/${src.dir}/**"/>
+				<include name="vsdb11_protokoll.pdf"/>
+				<include name="build.xml"/>
+			</fileset>
+		</swtjar> 
+	</target>
+	
+
+    <target name="run" depends="jar">
+        <java jar="Chat.jar" fork="true">
+			<arg value="${arg0}"/>
+			<arg value="${arg1}"/>
+			<arg value="${arg2}"/>
+		</java>
+    </target>
+	
+    <target name="rebuild" depends="clean, compile" description="Clean and build products." />
+    
+    <target name="clean" description="Clean build products.">
+        <delete dir="${build.dir}"/>
+    </target>
+    
+</project>
