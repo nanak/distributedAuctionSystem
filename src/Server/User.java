@@ -17,6 +17,8 @@ public class User {
 	private ArrayList<Notification> notifications;
 	 
 	private Date lastSeen;
+	
+	private String ip;
 	/**
 	 * User Model Constructor
 	 * @param name username
@@ -24,11 +26,12 @@ public class User {
 	 * @param notifications notifications to send
 	 * @param lastSeen last action
 	 */
-	public User(String name, boolean online, ArrayList<Notification> notifications, Date lastSeen){
+	public User(String name, boolean online, ArrayList<Notification> notifications, Date lastSeen, String ip){
 		this.name=name;
 		this.online=online;
 		this.notifications=notifications;
 		this.lastSeen=lastSeen;
+		this.ip=ip;
 	}
 	
 	public ArrayList<Notification> getNotifications() {
@@ -52,20 +55,23 @@ public class User {
 	}
 
 	public String getName() {
-		return null;
+		return name;
 	}
 	 
 	public void setOnline(boolean on) {
-	 
+		this.online=on;
 	}
 	 
 	public boolean getOnline() {
-		return false;
+		return this.online;
 	}
 	 
 	public Date setLastSeen() {
-		return null;
+		return this.lastSeen;
 	}
-	 
+	
+	public String getIP(){
+		return this.ip;
+	}
 }
  

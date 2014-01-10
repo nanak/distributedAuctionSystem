@@ -23,7 +23,7 @@ public class Client {
 	 */
 	public Client(String host, int tcp, int udp) {
 		this.tcp=new TCPConnection(host, tcp);
-		this.udp=new UDPConnection(host, udp);
+		this.serverListener=new ServerListener(udp);
 	}
 	
 	/**
