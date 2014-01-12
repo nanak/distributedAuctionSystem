@@ -19,7 +19,7 @@ public class CreateCommand implements Command {
 	 * @param cmd command to execute
 	 */
 	@Override
-	public boolean execute(String cmd) {
+	public boolean execute(String cmd, ManageConnection con) {
 		//!create 25200 Super small notebook
 		String[] s =  cmd.split("\\s+");
 		int duration=Integer.parseInt(s[1]);

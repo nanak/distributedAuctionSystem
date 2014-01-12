@@ -18,7 +18,7 @@ public class BidCommand implements Command {
 	 * @param cmd command to execute
 	 */
 	@Override
-	public boolean execute(String cmd) {
+	public boolean execute(String cmd, ManageConnection con) {
 		//!bid <auction-id> <amount>
 		String[] s =  cmd.split("\\s+");
 		String out="";

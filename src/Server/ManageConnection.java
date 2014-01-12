@@ -2,6 +2,8 @@ package Server;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -26,20 +28,33 @@ public class ManageConnection implements Runnable {
 		this.commands=commands;
 	}
 
+	
 	@Override
 	public void run() {
-		while(true){
-			receive();
-		}
+		Runnable receiver=new Runnable() {
+			@Override
+			public void run() {
+				while(true){
+					receive();
+				}
+			}
+		};
+		Thread t=new Thread(receiver);
+		t.start();	
 	}
 
 	/**
 	 * Sends a command to the auction server
-	 * @param command command to be sent on the server
-	 * @return is command sent successfully
+	 * @param cmd command to be sent on the server
 	 */
-	public boolean send(String command) {
-		return false;
+	public void send(String cmd) {
+		try{ 
+			PrintWriter printWriter =new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+			printWriter.print(cmd);
+			printWriter.flush();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 
@@ -54,10 +69,11 @@ public class ManageConnection implements Runnable {
 			String message = new String(buffer, 0, length);
 			//System.out.println(message); //received command as string!
 			System.out.println(socket.getInetAddress());
-			commands.runCommand(message+" "+socket.getInetAddress());
+			commands.runCommand(message+" "+socket.getInetAddress(),this);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
+
 }
 

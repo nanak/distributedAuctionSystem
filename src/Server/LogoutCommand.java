@@ -13,7 +13,7 @@ public class LogoutCommand implements Command{
 		
 	}
 	@Override
-	public boolean execute(String cmd) {
+	public boolean execute(String cmd, ManageConnection con) {
 		String[] s =  cmd.split("\\s+");
 		String out="";
 		//ka woher ich das user objekt krieg bzw username

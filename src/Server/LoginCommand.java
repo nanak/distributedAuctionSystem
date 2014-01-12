@@ -17,7 +17,7 @@ public class LoginCommand implements Command {
 	 * @param cmd command to execute
 	 */
 	@Override
-	public boolean execute(String cmd) {
+	public boolean execute(String cmd, ManageConnection con) {
 		System.out.println("logincommand");
 		String[] s =  cmd.split("\\s+");
 		String username=s[1];
