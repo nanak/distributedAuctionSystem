@@ -87,8 +87,8 @@ public class DataManager {
 			}else{
 				return false;
 			}
-		return false;
 		}
+		return false;
 	}
 	
 }
