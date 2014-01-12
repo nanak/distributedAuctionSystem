@@ -38,6 +38,7 @@ public class LoginCommand implements Command {
 			for(int i=0; i<userlist.size(); i++){
 				if(userlist.get(i).getName().equals(loggername)){
 					login=userlist.get(i);
+					exists=true;
 					break;
 				}
 			}
@@ -55,6 +56,7 @@ public class LoginCommand implements Command {
 		}
 		else{
 			login = new User(loggername, true, new Date(), ip);
+			userlist.add(login);
 			con.send("Successfully logged in as "+loggername+"!");
 			return true;
 		}
