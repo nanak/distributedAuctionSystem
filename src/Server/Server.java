@@ -56,6 +56,7 @@ public class Server{
 				String guess = console.next();
 				data.saveData();
 				System.out.println("Server is saving data and shutting down");
+				System.exit(1);
 			}
 		};
 		Thread t=new Thread(check);
