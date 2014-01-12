@@ -24,7 +24,6 @@ public class LoginCommand implements Command {
 		try{
 			s=cmd.split("\\s+");
 		}catch (ArrayIndexOutOfBoundsException e){
-			con.send("Login not possible. Only 1 argument given");
 			return false;
 		}		
 		String username=s[1];
