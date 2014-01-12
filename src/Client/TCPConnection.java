@@ -33,7 +33,11 @@ public class TCPConnection{
 				if(input.startsWith("!login")){
 					username=input.split("!login")[1];
 				}
-				sendMessage(s, input+" "+username);
+				if(!username.equals("")){
+					sendMessage(s, input+" "+username);
+				}else{
+					sendMessage(s, input);
+				}	
 			}
 			
 		}catch (ConnectException e){
