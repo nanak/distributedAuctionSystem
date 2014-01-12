@@ -27,17 +27,19 @@ public class Server{
 	 
 	private ArrayList<User> user;
 	 
+	private TCPServer tcp;
 	/**
 	 * Constructor of the auction system server
 	 * @param tcp TCP Port
 	 */
 	public Server(int tcp) {
-		try {
-			sendNotification(new User("Tobi",true,null,null,InetAddress.getLocalHost().toString()));
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.tcp=new TCPServer(tcp);
+//		try {
+//			sendNotification(new User("Tobi",true,null,null,InetAddress.getLocalHost().toString()));
+//		} catch (UnknownHostException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	public void sendNotification(User u){
