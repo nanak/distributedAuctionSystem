@@ -23,7 +23,7 @@ public class CreateCommand implements Command {
 	 */
 	@Override	
 	public boolean execute(String cmd, ManageConnection con, String name, String ip) {
-		//!create 25200 Super small notebook username IP
+		//!create 25200 Super small notebook
 		String[] s=null;
 		try{
 			s=cmd.split("\\s+");
@@ -31,9 +31,8 @@ public class CreateCommand implements Command {
 			con.send("Bid not possible. Only 1 argument given");
 			return false;
 		}
-		int param=s.length-2;
-		if(s.length<5){
-			con.send("Create not possible. 3 or more expected but "+param+" given.");
+		if(s.length<3){
+			con.send("Create not possible. 3 or more expected but "+s.length+" given.");
 			return false;
 		}
 		int duration=0;
@@ -45,15 +44,14 @@ public class CreateCommand implements Command {
 		}
 		int id=auctionlist.size();
 		User owner=null;
-		String ownername=s[s.length-2];
 		for(int i=0; i<userlist.size(); i++){
-			if(userlist.get(i).getName().equals(ownername)){
+			if(userlist.get(i).getName().equals(name)){
 				owner=userlist.get(i);
 				break;
 			}
 		}
 		String descr="";
-		for (int i=2; i<s.length-2; i++){
+		for (int i=2; i<s.length; i++){
 			descr=descr+s[i]+" ";
 		}		
 		Auction a = new Auction(id, duration, owner, null, 0.0, descr);

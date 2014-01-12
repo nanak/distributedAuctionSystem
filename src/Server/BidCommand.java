@@ -21,7 +21,7 @@ public class BidCommand implements Command {
 	 */
 	@Override
 	public boolean execute(String cmd, ManageConnection con, String name, String ip) {
-		//!bid <auction-id> <amount> username ip
+		//!bid <auction-id> <amount>
 		if(auctionlist.isEmpty()==true){
 			con.send("No auctions to bid on");
 			return false;
@@ -33,9 +33,8 @@ public class BidCommand implements Command {
 			con.send("Bid not possible. Only 1 argument given");
 			return false;
 		}
-		int param=s.length-2;
-		if(s.length<5){
-			con.send("Create not possible. 3 or more expected but "+param+" given.");
+		if(s.length<3){
+			con.send("Create not possible. 3 or more expected but "+s.length+" given.");
 			return false;
 		}
 		int aid=0;
@@ -52,10 +51,9 @@ public class BidCommand implements Command {
 			 con.send("Bid not possible. The amount "+s[2]+" is not a number");
 			 return false;
 		}
-		String biddername=s[s.length-2];
 		User bidder=null;
 		for(int i=0; i<userlist.size(); i++){
-			if(userlist.get(i).getName().equals(biddername)){
+			if(userlist.get(i).getName().equals(name)){
 				bidder=userlist.get(i);
 				break;
 			}
