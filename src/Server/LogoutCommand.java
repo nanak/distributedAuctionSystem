@@ -19,7 +19,7 @@ public class LogoutCommand implements Command{
 		//ka woher ich das user objekt krieg bzw username
 		// User u = ...
 		// u.setOnline(false);
-		// u.setLastSeen(new Date(System.currentTimeMillis()));
+		// u.setLastSeen(new Date()):
 		//out="Successfully logged out as "+u.getName()+"!";	
 		
 		//WOHER WEISS ICH OB DER USER NOCH NICHT EINGELOGGT IST?

@@ -1,7 +1,7 @@
 package Server;
 
 import java.util.ArrayList;
-
+import Server.ManageConnection;
 /**
  * The login command implementation
  * @author Michaela Lipovits
@@ -44,9 +44,10 @@ public class LoginCommand implements Command {
 			}
 		}
 		else{
-			//wie krieg ich notoficationlist, in welchem format ist last seen zu speichern und woher krieg ich hier die ip?
-			//login = new User(username, true, notifications, lastSeen, ip)
+			//in welchem format ist last seen zu speichern und woher krieg ich hier die ip?
+			//login = new User(username, true, new Date(), ip)
 			out="Successfully logged in as "+username+"!";
+			ManageConnection
 			ret=true;
 		}
 		return ret;

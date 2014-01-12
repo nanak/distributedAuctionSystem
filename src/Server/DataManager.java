@@ -87,13 +87,10 @@ public class DataManager {
 			}else{
 				return false;
 			}
-		}
-<<<<<<< HEAD
-=======
-
->>>>>>> cbd7c47c913c5fc2f2420fdd0761f6939d9b4320
 		return false;
+		}
 	}
+	
 }
 
 
