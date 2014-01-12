@@ -20,15 +20,18 @@ public class LoginCommand implements Command {
 	 */
 	@Override
 	public boolean execute(String cmd, ManageConnection con, String name, String ip) {
+		//!login <username>
 		String[] s=null;
 		try{
 			s=cmd.split("\\s+");
 		}catch (ArrayIndexOutOfBoundsException e){
 			return false;
-		}		
-		String username=s[1];
+		}
+		if(s.length!=2){
+			con.send("Login not possible. Wrong number of arguments. "+s.length+" given but 2 expected.");
+			return false;
+		}
 		boolean exists=false;
-	//	String ip=s[s.length-1];
 		User login=null;
 		String loggername=s[1];
 		if(!userlist.isEmpty()){
@@ -42,17 +45,17 @@ public class LoginCommand implements Command {
 		if(exists==true){
 			if(login.getOnline()==false){
 				login.setOnline(true);
-				con.send("Successfully logged in as "+username+"!");
+				con.send("Successfully logged in as "+loggername+"!");
 				return true;
 			}
 			else{
-				con.send(""+username+" is already logged in!");
+				con.send(""+loggername+" is already logged in!");
 				return false;
 			}
 		}
 		else{
-			login = new User(username, true, new Date(), ip);
-			con.send("Successfully logged in as "+username+"!");
+			login = new User(loggername, true, new Date(), ip);
+			con.send("Successfully logged in as "+loggername+"!");
 			return true;
 		}
 
