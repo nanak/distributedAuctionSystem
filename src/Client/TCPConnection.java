@@ -49,10 +49,11 @@ public class TCPConnection{
 			while (true) {
 				input = bufferRead.readLine();
 				if(input.startsWith("!login")){
-					username=input.split("!login")[1];
+					username=input.split(" ")[1];
 				}
 				if(!username.equals("")){
 					sendMessage(s, input+"&&"+username);
+					
 				}else{
 					if(input.startsWith("!login")||input.startsWith("!list")){
 						sendMessage(s, input);

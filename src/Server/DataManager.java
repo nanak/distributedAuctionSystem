@@ -58,6 +58,7 @@ public class DataManager {
 			Object obj = load.readObject();
 			auctionlist=(ArrayList<Auction>)obj;
 		} catch (IOException | ClassNotFoundException e) {
+			//e.printStackTrace();
 			System.out.println("file not found");
 			auctionlist=new ArrayList<Auction>();
 		}
