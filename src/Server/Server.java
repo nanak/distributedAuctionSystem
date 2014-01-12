@@ -38,6 +38,7 @@ public class Server{
 		auction=new ArrayList<Auction>();
 		user=new ArrayList<User>();
 		User tobi=new User("tobi", true, null, "127.0.0.1");
+		user.add(tobi);
 		auction.add(new Auction(1, 100, tobi, tobi, 1.1, "unnoetige auktion"));
 		commands=new CommandMapFactory(auction, user);
 		this.tcp=new TCPServer(tcp, commands);

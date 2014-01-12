@@ -31,11 +31,13 @@ public class TCPConnection{
 
 				@Override
 				public void run() {
-					while(true){
+					boolean t=true;
+					while(t){
 						try{
 							System.out.println(readMessage(s));
 						}catch (Exception e){
-							e.printStackTrace();
+							//t=false;
+							System.out.println("Loss connection to server");
 						}
 					}
 
@@ -73,7 +75,12 @@ public class TCPConnection{
 		printWriter.print(nachricht);
 		printWriter.flush();
 	}
-
+	/**
+	 * Reads the message from the server
+	 * @param socket socket to read from
+	 * @return String got from server
+	 * @throws IOException exception when it cant read
+	 */
 	private String readMessage(Socket socket) throws IOException {
 		BufferedReader bufferedReader =new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		char[] buffer = new char[200];
