@@ -17,6 +17,11 @@ public class CommandMapFactory {
 		System.out.println(cmd+"RUN");
 		System.out.println(map.get(cmd.split(" ")[0]));
 		Command c = (Command) map.get(cmd.split(" ")[0]);
-		c.execute(cmd);
+		if(c!=null){
+			c.execute(cmd);
+		}else{
+			System.out.println("Command not found"); //RETURN TO CLIENT!!
+		}
+
 	}
 }
