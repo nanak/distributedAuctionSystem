@@ -32,7 +32,7 @@ public class DataManager {
 		this.auctionlist=list;
 		String text = 	""; 
 	}
-	
+
 	/**
 	 * Save the auctions in file
 	 */
@@ -78,7 +78,7 @@ public class DataManager {
 	 * @return	true if bid was correct -> highest bidder
 	 */
 	public boolean bidAuction(int id, double bet) {
-	for(int i = 0; i<auctionlist.size();i++){
+		for(int i = 0; i<auctionlist.size();i++){
 			if(auctionlist.get(i).getId()==id && auctionlist.get(i).getHighestbid()==bet ){
 				Auction a = new Auction(id, auctionlist.get(i).getDuration(), auctionlist.get(i).getOwner(), auctionlist.get(i).getHighestbidder(), bet, auctionlist.get(i).getDescription());
 				auctionlist.remove(i);
@@ -88,11 +88,10 @@ public class DataManager {
 				return false;
 			}
 		}
-		
-		return false;
-	}
-		return false;
-	}
 
+		return false;
+	}
 }
+
+
 
