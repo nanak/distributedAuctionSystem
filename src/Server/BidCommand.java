@@ -24,10 +24,11 @@ public class BidCommand implements Command {
 		//!bid <auction-id> <amount> username ip
 		if(auctionlist.isEmpty()==true) return false;
 		String[] s=null;
-		String out="";
 		try{
 			s=cmd.split("\\s+");
 		}catch (ArrayIndexOutOfBoundsException e){
+			int param=s.length-2;
+			con.send("Bid not possible. Wrong number of arguments. 3 expected but only "+param+" given.");
 			return false;
 		}
 		if(s.length<5) return false;
@@ -36,13 +37,13 @@ public class BidCommand implements Command {
 		try{
 			aid=Integer.parseInt(s[1]);
 		 }catch(NumberFormatException e){
-			 out="Bid not possible. The id "+s[1]+" is not a number";
+			 con.send("Bid not possible. The id "+s[1]+" is not a number");
 			 return false;
 		}
 		try{
 			amount=Double.parseDouble(s[2]);
 		 }catch(NumberFormatException e){
-			 out="Bid not possible. The amount "+s[2]+" is not a number";
+			 con.send("Bid not possible. The amount "+s[2]+" is not a number");
 			 return false;
 		}
 		String biddername=s[s.length-2];
@@ -57,17 +58,17 @@ public class BidCommand implements Command {
 		try{
 			a=auctionlist.get(aid);
 		}catch (IndexOutOfBoundsException e){
-			out="Bid not possible. No auction found with id "+a.getId();
+			con.send("Bid not possible. No auction found with id "+a.getId());
 			return false;
 		}	
 		if(a.getHighestbid()<amount){
 			a.setHighestbid(amount);
 			a.setHighestbidder(bidder);
-			out="You successfully bid with "+amount+" on '"+a.getDescription()+"'.";
+			con.send("You successfully bid with "+amount+" on '"+a.getDescription()+"'.");
 			return true;
 		}
 		else{
-			out="You unsuccessfully bid with "+amount+" on '"+a.getDescription()+"'. Current highest bid is "+a.getHighestbid()+".";
+			con.send("You unsuccessfully bid with "+amount+" on '"+a.getDescription()+"'. Current highest bid is "+a.getHighestbid()+".");
 			return false;
 		}
 	}

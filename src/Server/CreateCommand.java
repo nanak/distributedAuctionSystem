@@ -24,7 +24,6 @@ public class CreateCommand implements Command {
 	@Override	
 	public boolean execute(String cmd, ManageConnection con) {
 		//!create 25200 Super small notebook username IP
-
 		String[] s=null;
 		try{
 			s=cmd.split("\\s+");
@@ -55,7 +54,7 @@ public class CreateCommand implements Command {
 		//HIER NICHT DATAMANAGER ZUM ERSTELLEN VERWENDET 
 		auctionlist.add(a);
 		//An auction 'Super small notebook' with id 3 has been created and will end on 04.10.2012 18:00 CET.
-		String out="An auction '"+a.getDescription()+"' with id "+a.getId()+" hase been created and will end on "+a.getEnd()+".";
+		con.send("An auction '"+a.getDescription()+"' with id "+a.getId()+" hase been created and will end on "+a.getEnd()+".");
 		return true;
 		
 	}

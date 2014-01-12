@@ -20,7 +20,12 @@ public class LoginCommand implements Command {
 	 */
 	@Override
 	public boolean execute(String cmd, ManageConnection con) {
-		String[] s =  cmd.split("\\s+");
+		String[] s=null;
+		try{
+			s=cmd.split("\\s+");
+		}catch (ArrayIndexOutOfBoundsException e){
+			return false;
+		}
 		String username=s[1];
 		boolean exists=false;
 		String ip=s[s.length-1];
