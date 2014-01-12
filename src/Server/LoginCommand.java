@@ -1,7 +1,7 @@
 package Server;
 
 import java.util.ArrayList;
-
+import Server.ManageConnection;
 /**
  * The login command implementation
  * @author Michaela Lipovits
@@ -18,15 +18,13 @@ public class LoginCommand implements Command {
 	 */
 	@Override
 	public boolean execute(String cmd, ManageConnection con) {
-		System.out.println("logincommand");
 		String[] s =  cmd.split("\\s+");
 		String username=s[1];
 		System.out.println(username);
 		boolean exists=false;
 		User login=null;
 		String out="";
-		boolean ret;
-		for(int i=0; i<user.size(); i++){
+		for(int i=0; i<user.size()-2; i++){
 			if(user.get(i).getName().equals(username)){
 				exists=true;
 				login=user.get(i);
@@ -37,20 +35,20 @@ public class LoginCommand implements Command {
 			if(login.getOnline()==false){
 				login.setOnline(true);
 				out="Successfully logged in as "+username+"!";
-				ret=true;
+				return true;
 			}
 			else{
 				out=""+username+" is already logged in!";
-				ret= false;
+				return false;
 			}
 		}
 		else{
-			//wie krieg ich notoficationlist, in welchem format ist last seen zu speichern und woher krieg ich hier die ip?
-			//login = new User(username, true, notifications, lastSeen, ip)
+			//in welchem format ist last seen zu speichern und woher krieg ich hier die ip?
+			//login = new User(username, true, new Date(), ip)
 			out="Successfully logged in as "+username+"!";
-			ret=true;
+			return true;
 		}
-		return ret;
+
 	}
  
 }

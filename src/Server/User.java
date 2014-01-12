@@ -26,10 +26,10 @@ public class User {
 	 * @param notifications notifications to send
 	 * @param lastSeen last action
 	 */
-	public User(String name, boolean online, ArrayList<Notification> notifications, Date lastSeen, String ip){
+	public User(String name, boolean online, Date lastSeen, String ip){
 		this.name=name;
 		this.online=online;
-		this.notifications=notifications;
+		this.notifications=new ArrayList<Notification>();
 		this.lastSeen=lastSeen;
 		this.ip=ip;
 	}
