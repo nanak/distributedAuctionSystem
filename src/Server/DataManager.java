@@ -42,7 +42,7 @@ public class DataManager {
 			save.writeObject(auctionlist);
 			save.close();
 		} catch ( IOException e ) {
-			e.printStackTrace();
+			System.out.println("Could not be saved");
 		}
 
 	}
@@ -52,13 +52,14 @@ public class DataManager {
 	 * @throws FileNotFoundException
 	 */
 	@SuppressWarnings("unchecked")
-	public void loadData() throws FileNotFoundException {
+	public void loadData(){
 		try {
 			ObjectInputStream load=new ObjectInputStream(loadFile);
 			Object obj = load.readObject();
 			auctionlist=(ArrayList<Auction>)obj;
 		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("file not found");
+			auctionlist=new ArrayList<Auction>();
 		}
 	}
 
