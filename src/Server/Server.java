@@ -37,7 +37,7 @@ public class Server{
 	public Server(int tcp) {
 		commands=new CommandMapFactory(auction, user);
 		this.tcp=new TCPServer(tcp, commands);
-		User tobi=new User("tobi", true, null, null, "127.0.0.1");
+		User tobi=new User("tobi", true, null, "127.0.0.1");
 		auction.add(new Auction(1, 100, tobi, tobi, 1.1, "unnoetige auktion"));
 //		try {
 //			sendNotification(new User("Tobi",true,null,null,InetAddress.getLocalHost().toString()));
