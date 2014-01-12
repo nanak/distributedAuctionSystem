@@ -21,6 +21,7 @@ public class CommandMapFactory {
 		}catch (Exception e){
 			e.printStackTrace();
 			System.out.println(cmd+ " Command not found"); //RETURN TO CLIENT!!
+			// TODO fix crash when writing !logou
 		}
 
 	}

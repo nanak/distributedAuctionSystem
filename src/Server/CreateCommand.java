@@ -58,7 +58,7 @@ public class CreateCommand implements Command {
 		//HIER NICHT DATAMANAGER ZUM ERSTELLEN VERWENDET 
 		auctionlist.add(a);
 		//An auction 'Super small notebook' with id 3 has been created and will end on 04.10.2012 18:00 CET.
-		con.send("An auction '"+a.getDescription()+"' with id "+a.getId()+" hase been created and will end on "+a.getEnd()+". Ownewr:"+a.getOwner().getName());
+		con.send("An auction '"+a.getDescription()+"' with id "+a.getId()+" hase been created and will end on "+a.getEnd()+".");
 		return true;
 		
 	}

@@ -32,8 +32,5 @@ public class LogoutCommand implements Command{
 		logout.setOnline(false);
 		con.send("Successfully logged out as "+logout.getName()+"!");	
 		return true;
-		
 	}
- 
-
 }
