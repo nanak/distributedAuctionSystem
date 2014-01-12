@@ -6,6 +6,6 @@ package Server;
  *
  */
 public interface Command {
-	public abstract boolean execute(String cmd,ManageConnection con);
+	public abstract boolean execute(String cmd,ManageConnection con, String name, String ip);
 }
  

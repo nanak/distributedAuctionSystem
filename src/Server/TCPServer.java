@@ -36,7 +36,7 @@ public class TCPServer implements Runnable{
 				t.start();
 			}
 		}catch (Exception e){
-			e.printStackTrace();
+			System.out.println("socket could not be created");
 		}
 		
 	}

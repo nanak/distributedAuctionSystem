@@ -22,7 +22,7 @@ public class CreateCommand implements Command {
 	 * @param cmd command to execute
 	 */
 	@Override	
-	public boolean execute(String cmd, ManageConnection con) {
+	public boolean execute(String cmd, ManageConnection con, String name, String ip) {
 		//!create 25200 Super small notebook username IP
 		String[] s=null;
 		try{

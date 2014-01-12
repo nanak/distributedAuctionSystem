@@ -28,7 +28,6 @@ public class TCPConnection{
 			BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
 			String input;
 			Runnable read=new Runnable() {
-
 				@Override
 				public void run() {
 					boolean t=true;
@@ -52,7 +51,7 @@ public class TCPConnection{
 					username=input.split("!login")[1];
 				}
 				if(!username.equals("")){
-					sendMessage(s, input+" "+username);
+					sendMessage(s, input+"&&"+username);
 				}else{
 					sendMessage(s, input);
 				}	
