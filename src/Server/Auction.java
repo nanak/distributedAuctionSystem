@@ -1,5 +1,9 @@
 package Server;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Auction Model
  * @author Tobi
@@ -19,13 +23,17 @@ public class Auction {
 	 
 	private User owner;
 	
+	private Calendar cal;
+
+	private SimpleDateFormat sdf;
+
+	private String end;
 	
-	/**
-	 * Returns the auction in the correct output
-	 */
-	public String toString() {
-		return null;
-	}
+	private Date date;
+	
+	//HIER FEHLT ENDDATUM (bei list muss enddatum azeigt werden
+	
+
 	/**
 	 * Constructor
 	 * @param id			UID of the Auction
@@ -42,8 +50,32 @@ public class Auction {
 		this.highestbid=highestbid;
 		this.setHighestbidder(highestbidder);
 		this.owner=owner;
+		// calculate enddate
+		cal = Calendar.getInstance();
+		sdf = new SimpleDateFormat("dd.MM.YYYY HH:mm");
+		cal.add(Calendar.SECOND, (int) duration);
+		this.end = sdf.format(cal.getTime());
+		// TODO Zeitzone hier fehlt
+		this.date = new Date();
 	}
-
+	/**
+	 * @return the date
+	 */
+	public Date getDate() {
+		return date;
+	}
+	/**
+	 * @param date the date to set
+	 */
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	/**
+	 * Returns the auction in the correct output
+	 */
+	public String toString() {
+		return null;
+	}
 	public int getId() {
 		return id;
 	}
@@ -90,6 +122,14 @@ public class Auction {
 
 	public void setHighestbidder(User highestbidder) {
 		this.highestbidder = highestbidder;
+	}
+	/**
+	 * This method returns the enddate of the auction in the format dd.MM.YYYY HH:mm
+	 * 
+	 * @return enddate as String
+	 */
+	public String getEnd() {
+		return end;
 	}
 }
  

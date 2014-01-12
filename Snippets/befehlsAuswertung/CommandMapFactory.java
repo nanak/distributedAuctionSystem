@@ -22,7 +22,6 @@ public class CommandMapFactory {
 				continue;
 			}
 			String s = br.readLine();
-			String[] sa = s.split("\\s+");
 			Command c = (Command) map.get(sa[0]);
 			if(c != null)
 				c.execute(sa);
