@@ -38,6 +38,7 @@ public class LoginCommand implements Command {
 		if(!userlist.isEmpty()){
 			for(int i=0; i<userlist.size(); i++){
 				if(userlist.get(i).getName().equals(loggername)){
+					System.out.println("logged in");
 					login=userlist.get(i);
 					exists=true;
 					break;
