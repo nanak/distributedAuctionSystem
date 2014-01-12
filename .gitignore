@@ -1,8 +1,0 @@
-*.class
-
-# Package Files #
-*.jar
-*.war
-*.ear
-Doku_Astah/Klassendiagram.asta.lock
-.gitignore
