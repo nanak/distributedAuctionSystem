@@ -1,6 +1,8 @@
 package Server;
 
+import java.util.Date;
 import java.util.ArrayList;
+
 import Server.ManageConnection;
 /**
  * The login command implementation
@@ -8,9 +10,9 @@ import Server.ManageConnection;
  *
  */
 public class LoginCommand implements Command {
-	ArrayList<User> user;
-	public LoginCommand(ArrayList<User> user){
-		this.user=user;
+	ArrayList<User> userlist;
+	public LoginCommand(ArrayList<User> userlist){
+		this.userlist=userlist;
 	}
 	/**
 	 * executes the command
@@ -20,17 +22,17 @@ public class LoginCommand implements Command {
 	public boolean execute(String cmd, ManageConnection con) {
 		String[] s =  cmd.split("\\s+");
 		String username=s[1];
-		System.out.println(username);
 		boolean exists=false;
+		String ip=s[s.length-1];
 		User login=null;
-		String out="";
-		for(int i=0; i<user.size()-2; i++){
-			if(user.get(i).getName().equals(username)){
-				exists=true;
-				login=user.get(i);
+		String loggername=s[s.length-2];
+		for(int i=0; i<userlist.size(); i++){
+			if(userlist.get(i).getName().equals(loggername)){
+				login=userlist.get(i);
 				break;
 			}
 		}
+		String out="";
 		if(exists==true){
 			if(login.getOnline()==false){
 				login.setOnline(true);
@@ -43,8 +45,7 @@ public class LoginCommand implements Command {
 			}
 		}
 		else{
-			//in welchem format ist last seen zu speichern und woher krieg ich hier die ip?
-			//login = new User(username, true, new Date(), ip)
+			login = new User(username, true, new Date(), ip);
 			out="Successfully logged in as "+username+"!";
 			return true;
 		}
