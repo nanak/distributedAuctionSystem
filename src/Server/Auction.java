@@ -2,6 +2,7 @@ package Server;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Auction Model
@@ -28,6 +29,8 @@ public class Auction {
 
 	private String end;
 	
+	private Date date;
+	
 	//HIER FEHLT ENDDATUM (bei list muss enddatum azeigt werden
 	
 
@@ -53,6 +56,19 @@ public class Auction {
 		cal.add(Calendar.SECOND, (int) duration);
 		this.end = sdf.format(cal.getTime());
 		// TODO Zeitzone hier fehlt
+		this.date = new Date();
+	}
+	/**
+	 * @return the date
+	 */
+	public Date getDate() {
+		return date;
+	}
+	/**
+	 * @param date the date to set
+	 */
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	/**
 	 * Returns the auction in the correct output
