@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.security.AllPermission;
 
 /**
  * The TCP Connection of the Client
@@ -53,7 +54,11 @@ public class TCPConnection{
 				if(!username.equals("")){
 					sendMessage(s, input+"&&"+username);
 				}else{
-					sendMessage(s, input);
+					if(input.startsWith("!login")||input.startsWith("!list")){
+						sendMessage(s, input);
+					}else{
+						System.out.println("Allowed commands: !login !list");
+					}
 				}	
 			}
 

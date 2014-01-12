@@ -69,7 +69,13 @@ public class ManageConnection implements Runnable {
 			String message = new String(buffer, 0, length);
 			//System.out.println(message); //received command as string!
 			String []msg=message.split("&&");
-			System.out.println(message.split("|")[0]);
+			String b=msg[0];
+			System.out.println(msg.length);
+			if(msg.length<2){
+				msg=new String[2];
+				msg[0]=b;
+				msg[1]="";
+			}
 			commands.runCommand(msg[0],this, msg[1],  socket.getInetAddress().getHostAddress());
 		}catch(Exception e){
 			e.printStackTrace();
