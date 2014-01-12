@@ -8,7 +8,7 @@ public class CommandMapFactory {
 	public CommandMapFactory(ArrayList<Auction> auctions, ArrayList<User> users){
 		map = new ConcurrentHashMap<String, Command>();	
 		map.put("!bid", new BidCommand(auctions,users));
-		map.put("!logout", new LogoutCommand());
+		map.put("!logout", new LogoutCommand(users));
 		map.put("!create", new CreateCommand(auctions,users));
 		map.put("!list", new ListCommand(auctions));
 		map.put("!login", new LoginCommand(users));	
