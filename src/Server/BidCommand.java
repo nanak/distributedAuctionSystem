@@ -33,8 +33,14 @@ public class BidCommand implements Command {
 		double amount=0.0;
 		try{
 			aid=Integer.parseInt(s[1]);
+		 }catch(NumberFormatException e){
+			 out="Bid not possible. The id "+s[1]+" is not a number";
+			 return false;
+		}
+		try{
 			amount=Double.parseDouble(s[2]);
 		 }catch(NumberFormatException e){
+			 out="Bid not possible. The amount "+s[2]+" is not a number";
 			 return false;
 		}
 		User bidder=null; //KA WOHER ICH DEN KRIEG
@@ -42,6 +48,7 @@ public class BidCommand implements Command {
 		try{
 			a=auctionlist.get(aid);
 		}catch (IndexOutOfBoundsException e){
+			out="Bid not possible. No auction found with id "+a.getId();
 			return false;
 		}	
 		if(a.getHighestbid()<amount){
