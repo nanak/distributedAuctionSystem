@@ -20,7 +20,7 @@ public class BidCommand implements Command {
 	 * @param cmd command to execute
 	 */
 	@Override
-	public boolean execute(String cmd, ManageConnection con) {
+	public boolean execute(String cmd, ManageConnection con, String name, String ip) {
 		//!bid <auction-id> <amount> username ip
 		if(auctionlist.isEmpty()==true){
 			con.send("No auctions to bid on");

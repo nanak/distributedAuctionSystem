@@ -14,7 +14,7 @@ public class LogoutCommand implements Command{
 		this.userlist=userlist;	
 	}
 	@Override
-	public boolean execute(String cmd, ManageConnection con) {
+	public boolean execute(String cmd, ManageConnection con, String name, String ip) {
 		String[] s=null;
 		User logout;
 		try{

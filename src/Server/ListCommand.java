@@ -17,7 +17,7 @@ public class ListCommand implements Command {
 	 * @param cmd command to execute
 	 */
 	@Override
-	public boolean execute(String cmd, ManageConnection con) {
+	public boolean execute(String cmd, ManageConnection con, String name, String ip) {
 		String out="";
 		Auction a;
 		if(!auctionlist.isEmpty()){

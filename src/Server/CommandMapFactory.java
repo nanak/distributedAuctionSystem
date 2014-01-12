@@ -13,10 +13,11 @@ public class CommandMapFactory {
 		map.put("!list", new ListCommand(auctions));
 		map.put("!login", new LoginCommand(users));	
 	}
-	public void runCommand(String cmd , ManageConnection con){
+	public void runCommand(String cmd , ManageConnection con, String name, String ip){
+		System.out.println(cmd);
 		Command c = (Command) map.get(cmd.split(" ")[0]);
 		try{
-			c.execute(cmd, con);
+			c.execute(cmd, con,  name,  ip);
 		}catch (Exception e){
 			e.printStackTrace();
 			System.out.println(cmd+ " Command not found"); //RETURN TO CLIENT!!

@@ -19,7 +19,7 @@ public class LoginCommand implements Command {
 	 * @param cmd command to execute
 	 */
 	@Override
-	public boolean execute(String cmd, ManageConnection con) {
+	public boolean execute(String cmd, ManageConnection con, String name, String ip) {
 		String[] s=null;
 		try{
 			s=cmd.split("\\s+");
@@ -28,7 +28,7 @@ public class LoginCommand implements Command {
 		}		
 		String username=s[1];
 		boolean exists=false;
-		String ip=s[s.length-1];
+	//	String ip=s[s.length-1];
 		User login=null;
 		String loggername=s[1];
 		if(!userlist.isEmpty()){
