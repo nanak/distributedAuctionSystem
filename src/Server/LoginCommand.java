@@ -39,6 +39,7 @@ public class LoginCommand implements Command {
 				if(userlist.get(i).getName().equals(loggername)){
 					System.out.println("logged in");
 					login=userlist.get(i);
+					exists=true;
 					break;
 				}
 			}
