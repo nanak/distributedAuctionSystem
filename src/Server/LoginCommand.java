@@ -18,6 +18,7 @@ public class LoginCommand implements Command {
 	 */
 	@Override
 	public boolean execute(String cmd) {
+		System.out.println("logincommand");
 		String[] s =  cmd.split("\\s+");
 		String username=s[1];
 		boolean exists=false;

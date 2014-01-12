@@ -25,25 +25,6 @@ public class Client {
 		this.tcp=new TCPConnection(host, tcp);
 		this.serverListener=new ServerListener(udp);
 	}
-	
-	/**
-	 * Sends a command to the auction server
-	 * @param command command to be sent on the server
-	 * @return is command sent successfully
-	 */
-	public boolean send(String command) {
-		return false;
-	}
-	
-	
-	/**
-	 * Handles the received command
-	 * @param command received command to handle
-	 * @return boolean is command processed
-	 */
-	public boolean receive(String command) {
-		return false;
-	}
 	 
 	/**
 	 * Shuts down the client and gives free the ressources

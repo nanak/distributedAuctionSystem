@@ -7,7 +7,7 @@ package Server;
  */
 public class RunServer{
 	public static void main (String [] args){
-		Server s=new Server(1234);
+		Server s=new Server(1111);
 	}	 
 }
  
