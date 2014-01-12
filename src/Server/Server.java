@@ -1,11 +1,15 @@
 package Server;
 
+import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
+
+import Client.TCPConnection;
 /**
  * Server class
  * @author nanak
@@ -27,22 +31,35 @@ public class Server{
 	 
 	private ArrayList<User> user;
 	 
-	private TCPServer tcp;
+	private Runnable tcp;
 	
 	private CommandMapFactory commands;
 	/**
 	 * Constructor of the auction system server
 	 * @param tcp TCP Port
 	 */
-	public Server(int tcp) {
+	public Server(int tcpport) {
+		data=new DataManager(auction);
 		auction=new ArrayList<Auction>();
+		data.loadData();
 		user=new ArrayList<User>();
-		User tobi=new User("tobi", true, null, "127.0.0.1");
-		user.add(tobi);
-		auction.add(new Auction(1, 100, tobi, tobi, 1.1, "unnoetige auktion"));
 		commands=new CommandMapFactory(auction, user);
-		this.tcp=new TCPServer(tcp, commands);
+		this.tcp=new TCPServer(tcpport, commands);
+		Thread serverthread=new Thread(tcp);
+		serverthread.start();
 		
+		Runnable check=new Runnable() {
+			@Override
+			public void run() {
+				Scanner console = new Scanner(System.in);
+				System.out.print("Press any key to exit");
+				String guess = console.next();
+				data.saveData();
+				System.out.println("Server is saving data and shutting down");
+			}
+		};
+		Thread t=new Thread(check);
+		t.start();
 //		try {
 //			sendNotification(new User("Tobi",true,null,null,InetAddress.getLocalHost().toString()));
 //		} catch (UnknownHostException e) {
