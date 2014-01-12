@@ -24,8 +24,7 @@ public class LoginCommand implements Command {
 		boolean exists=false;
 		User login=null;
 		String out="";
-		boolean ret;
-		for(int i=0; i<user.size(); i++){
+		for(int i=0; i<user.size()-2; i++){
 			if(user.get(i).getName().equals(username)){
 				exists=true;
 				login=user.get(i);
@@ -36,21 +35,20 @@ public class LoginCommand implements Command {
 			if(login.getOnline()==false){
 				login.setOnline(true);
 				out="Successfully logged in as "+username+"!";
-				ret=true;
+				return true;
 			}
 			else{
 				out=""+username+" is already logged in!";
-				ret= false;
+				return false;
 			}
 		}
 		else{
 			//in welchem format ist last seen zu speichern und woher krieg ich hier die ip?
 			//login = new User(username, true, new Date(), ip)
 			out="Successfully logged in as "+username+"!";
-			ManageConnection
-			ret=true;
+			return true;
 		}
-		return ret;
+
 	}
  
 }
