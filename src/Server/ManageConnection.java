@@ -52,8 +52,9 @@ public class ManageConnection implements Runnable {
 			char[] buffer = new char[200];
 			int length = in.read(buffer, 0, 200); // blockiert bis Nachricht empfangen
 			String message = new String(buffer, 0, length);
-			System.out.println(message); //received command as string!
-			commands.runCommand(message);
+			//System.out.println(message); //received command as string!
+			System.out.println(socket.getInetAddress());
+			commands.runCommand(message+" "+socket.getInetAddress());
 		}catch(Exception e){
 			e.printStackTrace();
 		}

@@ -14,12 +14,10 @@ public class CommandMapFactory {
 		map.put("!login", new LoginCommand(users));	
 	}
 	public void runCommand(String cmd){
-		System.out.println(cmd+"RUN");
-		System.out.println(map.get(cmd.split(" ")[0]));
 		Command c = (Command) map.get(cmd.split(" ")[0]);
-		if(c!=null){
+		try{
 			c.execute(cmd);
-		}else{
+		}catch (Exception e){
 			System.out.println("Command not found"); //RETURN TO CLIENT!!
 		}
 
