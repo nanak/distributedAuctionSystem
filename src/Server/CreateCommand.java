@@ -28,7 +28,7 @@ public class CreateCommand implements Command {
 		try{
 			s=cmd.split("\\s+");
 		}catch (ArrayIndexOutOfBoundsException e){
-			con.send("Bid not possible. Only 1 argument given");
+			con.send("Create not possible. Only 1 argument given");
 			return false;
 		}
 		if(s.length<3){
@@ -58,7 +58,7 @@ public class CreateCommand implements Command {
 		//HIER NICHT DATAMANAGER ZUM ERSTELLEN VERWENDET 
 		auctionlist.add(a);
 		//An auction 'Super small notebook' with id 3 has been created and will end on 04.10.2012 18:00 CET.
-		con.send("An auction '"+a.getDescription()+"' with id "+a.getId()+" hase been created and will end on "+a.getEnd()+".");
+		con.send("An auction '"+a.getDescription()+"' with id "+a.getId()+" hase been created and will end on "+a.getEnd()+"."+" Owner: "+owner.getName()+" or "+a.getOwner().getName());
 		return true;
 		
 	}
