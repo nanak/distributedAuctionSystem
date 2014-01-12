@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -14,6 +15,8 @@ import java.net.UnknownHostException;
  *
  */
 public class TCPConnection{
+	
+	private String username;
 	/**
 	 * TCP Connection from Client
 	 * @param host IP of Server
@@ -24,33 +27,24 @@ public class TCPConnection{
 			Socket s=new Socket(host,port);
 			BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
 			String input;
+			username="";
 			while (true) {
 				input = bufferRead.readLine();
-				sendMessage(s, input);
+				if(input.startsWith("!login")){
+					username=input.split("!login")[1];
+				}
+				if(!username.equals("")){
+					sendMessage(s, input+" "+username);
+				}else{
+					sendMessage(s, input);
+				}	
 			}
 			
-		}catch (Exception e){
-			e.printStackTrace();
+		}catch (ConnectException e){
+			System.out.println("Server not reachable!");
+		}catch (IOException e){
+			System.out.println("error");
 		}
-
-//		try (
-//				Socket echoSocket = new Socket(host, port);
-//				PrintWriter out =new PrintWriter(echoSocket.getOutputStream(), true);
-//				BufferedReader in =new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
-//				BufferedReader stdIn =new BufferedReader(new InputStreamReader(System.in))
-//				) {
-//			String userInput;
-//			while ((userInput = stdIn.readLine()) != null) {
-//				out.println(userInput);
-//				System.out.println("echo: " + in.readLine());
-//			}
-//		} catch (UnknownHostException e) {
-//			System.err.println("Don't know about host " + host);
-//			System.exit(1);
-//		} catch (IOException e) {
-//			System.err.println("Couldn't get I/O for the connection to " + host);
-//			System.exit(1);
-//		} 
 	}
 	/**
 	 * Sending a message to the specified socket as a string

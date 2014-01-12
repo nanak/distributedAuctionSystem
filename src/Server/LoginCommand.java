@@ -20,6 +20,7 @@ public class LoginCommand implements Command {
 	public boolean execute(String cmd) {
 		String[] s =  cmd.split("\\s+");
 		String username=s[1];
+		System.out.println(username);
 		boolean exists=false;
 		User login=null;
 		String out="";
