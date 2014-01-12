@@ -17,35 +17,18 @@ public class TCPServer{
 	 * TCP Connection from Server
 	 * @param port Port of TCP
 	 */
-	public TCPServer(int port){
+	public TCPServer(int port, CommandMapFactory commands){
 		int portNumber = port;
 		try{
 			ServerSocket serverSocket = new ServerSocket(portNumber);
 			while(true){
-				System.out.println("start");
 				Socket p=serverSocket.accept();
-				System.out.println("accepted");
-				Thread t=new Thread(new ManageConnection(p));  
+				Thread t=new Thread(new ManageConnection(p, commands));  
 				t.start();
 			}
 		}catch (Exception e){
 			e.printStackTrace();
 		}
-		
-//		try (
-//				ServerSocket serverSocket = new ServerSocket(portNumber);
-//				Socket clientSocket = serverSocket.accept();     
-//				PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);                   
-//				BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-//			) {
-//			String inputLine;
-//			while ((inputLine = in.readLine()) != null) {
-//				out.println(inputLine);
-//			}
-//		} catch (IOException e) {
-//			System.out.println("Exception caught when trying to listen on port "
-//					+ portNumber + " or listening for a connection");
-//			System.out.println(e.getMessage());
-//		}
 	}
+
 }

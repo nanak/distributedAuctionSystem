@@ -28,12 +28,16 @@ public class Server{
 	private ArrayList<User> user;
 	 
 	private TCPServer tcp;
+	
+	private CommandMapFactory commands;
 	/**
 	 * Constructor of the auction system server
 	 * @param tcp TCP Port
 	 */
 	public Server(int tcp) {
-		this.tcp=new TCPServer(tcp);
+		commands=new CommandMapFactory(auction, user);
+		this.tcp=new TCPServer(tcp, commands);
+		
 //		try {
 //			sendNotification(new User("Tobi",true,null,null,InetAddress.getLocalHost().toString()));
 //		} catch (UnknownHostException e) {
