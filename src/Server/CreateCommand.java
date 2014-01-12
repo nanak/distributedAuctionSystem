@@ -22,8 +22,13 @@ public class CreateCommand implements Command {
 	 * @param cmd command to execute
 	 */
 	@Override
+<<<<<<< HEAD
 	public boolean execute(String cmd) {
 		//!create 25200 Super small notebook username IP
+=======
+	public boolean execute(String cmd, ManageConnection con) {
+		//!create 25200 Super small notebook
+>>>>>>> 2a691ec1d07f7517310b909df8dd82a52111ebe2
 		String[] s=null;
 		try{
 			s=cmd.split("\\s+");

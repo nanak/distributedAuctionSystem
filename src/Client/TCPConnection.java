@@ -15,7 +15,7 @@ import java.net.UnknownHostException;
  *
  */
 public class TCPConnection{
-	
+
 	private String username;
 	/**
 	 * TCP Connection from Client
@@ -24,9 +24,25 @@ public class TCPConnection{
 	 */
 	public TCPConnection(String host,int port){
 		try{
-			Socket s=new Socket(host,port);
+			final Socket s=new Socket(host,port);
 			BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
 			String input;
+			Runnable read=new Runnable() {
+
+				@Override
+				public void run() {
+					while(true){
+						try{
+							System.out.println(readMessage(s));
+						}catch (Exception e){
+							e.printStackTrace();
+						}
+					}
+
+				}
+			};
+			Thread t=new Thread(read);
+			t.start();
 			username="";
 			while (true) {
 				input = bufferRead.readLine();
@@ -39,7 +55,7 @@ public class TCPConnection{
 					sendMessage(s, input);
 				}	
 			}
-			
+
 		}catch (ConnectException e){
 			System.out.println("Server not reachable!");
 		}catch (IOException e){
@@ -56,5 +72,13 @@ public class TCPConnection{
 		PrintWriter printWriter =new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
 		printWriter.print(nachricht);
 		printWriter.flush();
+	}
+
+	private String readMessage(Socket socket) throws IOException {
+		BufferedReader bufferedReader =new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		char[] buffer = new char[200];
+		int anzahlZeichen = bufferedReader.read(buffer, 0, 200); // blockiert bis Nachricht empfangen
+		String nachricht = new String(buffer, 0, anzahlZeichen);
+		return nachricht;
 	}
 }
