@@ -22,16 +22,22 @@ public class BidCommand implements Command {
 	@Override
 	public boolean execute(String cmd, ManageConnection con) {
 		//!bid <auction-id> <amount> username ip
-		if(auctionlist.isEmpty()==true) return false;
+		if(auctionlist.isEmpty()==true){
+			con.send("No auctions to bid on");
+			return false;
+		}
 		String[] s=null;
 		try{
 			s=cmd.split("\\s+");
 		}catch (ArrayIndexOutOfBoundsException e){
-			int param=s.length-2;
-			con.send("Bid not possible. Wrong number of arguments. 3 expected but only "+param+" given.");
+			con.send("Bid not possible. Only 1 argument given");
 			return false;
 		}
-		if(s.length<5) return false;
+		int param=s.length-2;
+		if(s.length<5){
+			con.send("Create not possible. 3 or more expected but "+param+" given.");
+			return false;
+		}
 		int aid=0;
 		double amount=0.0;
 		try{

@@ -28,13 +28,19 @@ public class CreateCommand implements Command {
 		try{
 			s=cmd.split("\\s+");
 		}catch (ArrayIndexOutOfBoundsException e){
+			con.send("Bid not possible. Only 1 argument given");
 			return false;
 		}
-		if(s.length<5) return false;
+		int param=s.length-2;
+		if(s.length<5){
+			con.send("Create not possible. 3 or more expected but "+param+" given.");
+			return false;
+		}
 		int duration=0;
 		try{
 			duration=Integer.parseInt(s[1]);
 		 }catch(NumberFormatException e){
+			 con.send("Create not possible. The duration "+s[1]+" is not a number");
 			 return false;
 		}
 		int id=auctionlist.size();

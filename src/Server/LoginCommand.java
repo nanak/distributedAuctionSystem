@@ -24,34 +24,36 @@ public class LoginCommand implements Command {
 		try{
 			s=cmd.split("\\s+");
 		}catch (ArrayIndexOutOfBoundsException e){
+			con.send("Login not possible. Only 1 argument given");
 			return false;
-		}
+		}		
 		String username=s[1];
 		boolean exists=false;
 		String ip=s[s.length-1];
 		User login=null;
-		String loggername=s[s.length-2];
-		for(int i=0; i<userlist.size(); i++){
-			if(userlist.get(i).getName().equals(loggername)){
-				login=userlist.get(i);
-				break;
+		String loggername=s[1];
+		if(!userlist.isEmpty()){
+			for(int i=0; i<userlist.size(); i++){
+				if(userlist.get(i).getName().equals(loggername)){
+					login=userlist.get(i);
+					break;
+				}
 			}
 		}
-		String out="";
 		if(exists==true){
 			if(login.getOnline()==false){
 				login.setOnline(true);
-				out="Successfully logged in as "+username+"!";
+				con.send("Successfully logged in as "+username+"!");
 				return true;
 			}
 			else{
-				out=""+username+" is already logged in!";
+				con.send(""+username+" is already logged in!");
 				return false;
 			}
 		}
 		else{
 			login = new User(username, true, new Date(), ip);
-			out="Successfully logged in as "+username+"!";
+			con.send("Successfully logged in as "+username+"!");
 			return true;
 		}
 
