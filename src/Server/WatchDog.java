@@ -9,7 +9,7 @@ import java.util.Date;
  * @author Tobi, Nanak
  * 
  */
-public class WatchDog {
+public class WatchDog implements Runnable {
 	private ArrayList<Auction> auction;
 	private ArrayList<User> user;
 	private Date currentDate;
@@ -42,11 +42,26 @@ public class WatchDog {
 	public boolean checkAuctionStatus() {
 		for (int i = 0; i < auction.size(); i++) {
 			currentDate = new Date();
-			if (auction.get(i).getDate().getTime() >= currentDate.getTime()) {
+			System.out.println(auction.get(i).getDate().getTime()+auction.get(i).getDuration()+" : "+currentDate.getTime());
+			if (auction.get(i).getDate().getTime()+auction.get(i).getDuration() >= currentDate.getTime()) {
+				auction.get(i).getHighestbidder().sendNotification("du hast bei der auktion gewonnen");
 				return true;
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public void run() {
+		while(true){
+			checkUserActivity();
+			checkAuctionStatus();
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

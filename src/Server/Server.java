@@ -47,7 +47,8 @@ public class Server{
 		this.tcp=new TCPServer(tcpport, commands);
 		Thread serverthread=new Thread(tcp);
 		serverthread.start();
-		
+		watchDog=new WatchDog(auction, user);
+		new Thread(watchDog).start();
 		Runnable check=new Runnable() {
 			@Override
 			public void run() {
@@ -69,28 +70,7 @@ public class Server{
 //		}
 	}
 	
-	public void sendNotification(User u){
-		if(u.getOnline()){
-			for(int x=0;x<u.getNotifications().size();x++){
-				
-				u.getNotifications().get(x).toString();
-			}
-		}
-		try{
-			InetAddress ia;
-			ia = InetAddress.getByName("localhost");
-			String s = "Du hast bei der Auktion gewonnen. LOL";
-			byte[] data = s.getBytes();
-			//Zum senden und empfangen wird DatagramPacket verwendet
-			DatagramPacket packet = new DatagramPacket( data, data.length, ia, 1234 );
-			@SuppressWarnings("resource")
-			//dieses packet wird ueber das DatagramSocket versendet
-			DatagramSocket toSocket = new DatagramSocket();
-			toSocket.send( packet ); //tatsaechliches senden
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-	}
+	
 	/**
 	 * Interprets the commands it gets
 	 * @param command Command to interpret

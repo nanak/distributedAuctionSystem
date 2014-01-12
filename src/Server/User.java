@@ -1,5 +1,8 @@
 package Server;
 
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -9,15 +12,15 @@ import java.util.Date;
  *
  */
 public class User {
- 
+
 	private String name;
-	 
+
 	private boolean online;
-	 
+
 	private ArrayList<Notification> notifications;
-	 
+
 	private Date lastSeen;
-	
+
 	private String ip;
 	/**
 	 * User Model Constructor
@@ -33,7 +36,7 @@ public class User {
 		this.lastSeen=lastSeen;
 		this.ip=ip;
 	}
-	
+
 	public ArrayList<Notification> getNotifications() {
 		return notifications;
 	}
@@ -57,21 +60,43 @@ public class User {
 	public String getName() {
 		return name;
 	}
-	 
+
 	public void setOnline(boolean on) {
 		this.online=on;
 	}
-	 
+
 	public boolean getOnline() {
 		return this.online;
 	}
-	 
+
 	public Date setLastSeen() {
 		return this.lastSeen;
 	}
-	
+
 	public String getIP(){
 		return this.ip;
 	}
+
+	public void sendNotification(String message){
+		if(this.getOnline()){
+			for(int x=0;x<this.getNotifications().size();x++){
+				this.getNotifications().get(x).toString();
+			}
+		}
+		try{
+			InetAddress ia;
+			ia = InetAddress.getByName(ip);
+			String s = message;
+			byte[] data = s.getBytes();
+			//Zum senden und empfangen wird DatagramPacket verwendet
+			DatagramPacket packet = new DatagramPacket( data, data.length, ia, 1234 );
+			@SuppressWarnings("resource")
+			//dieses packet wird ueber das DatagramSocket versendet
+			DatagramSocket toSocket = new DatagramSocket();
+			toSocket.send( packet ); //tatsaechliches senden
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+	}
 }
- 
+
