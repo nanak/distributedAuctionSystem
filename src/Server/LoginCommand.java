@@ -21,6 +21,7 @@ public class LoginCommand implements Command {
 		System.out.println("logincommand");
 		String[] s =  cmd.split("\\s+");
 		String username=s[1];
+		System.out.println(username);
 		boolean exists=false;
 		User login=null;
 		String out="";
