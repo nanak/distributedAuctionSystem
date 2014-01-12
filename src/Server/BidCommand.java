@@ -9,9 +9,11 @@ import java.util.ArrayList;
  */
 public class BidCommand implements Command {
 	private ArrayList<Auction> auctionlist;
+	ArrayList<User> userlist;
 	
-	public BidCommand(ArrayList<Auction> auctionlist){
+	public BidCommand(ArrayList<Auction> auctionlist, ArrayList<User> userlist){
 		this.auctionlist=auctionlist;
+		this.userlist=userlist;
 	}
 	/**
 	 * executes the command
@@ -19,7 +21,7 @@ public class BidCommand implements Command {
 	 */
 	@Override
 	public boolean execute(String cmd) {
-		//!bid <auction-id> <amount>
+		//!bid <auction-id> <amount> username ip
 		if(auctionlist.isEmpty()==true) return false;
 		String[] s=null;
 		String out="";
@@ -28,7 +30,7 @@ public class BidCommand implements Command {
 		}catch (ArrayIndexOutOfBoundsException e){
 			return false;
 		}
-		if(s.length<3) return false;
+		if(s.length<5) return false;
 		int aid=0;
 		double amount=0.0;
 		try{
@@ -43,7 +45,14 @@ public class BidCommand implements Command {
 			 out="Bid not possible. The amount "+s[2]+" is not a number";
 			 return false;
 		}
-		User bidder=null; //KA WOHER ICH DEN KRIEG
+		String biddername=s[s.length-2];
+		User bidder=null;
+		for(int i=0; i<userlist.size(); i++){
+			if(userlist.get(i).getName().equals(biddername)){
+				bidder=userlist.get(i);
+				break;
+			}
+		}
 		Auction a=null;
 		try{
 			a=auctionlist.get(aid);
@@ -53,7 +62,7 @@ public class BidCommand implements Command {
 		}	
 		if(a.getHighestbid()<amount){
 			a.setHighestbid(amount);
-			a.setHighestbidder(bidder); // KA WIE ICH DEN DEN BEFEHL EINGEBENDEN USER KENNEN SOLL
+			a.setHighestbidder(bidder);
 			out="You successfully bid with "+amount+" on '"+a.getDescription()+"'.";
 			return true;
 		}
