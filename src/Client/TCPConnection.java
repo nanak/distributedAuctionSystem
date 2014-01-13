@@ -65,6 +65,9 @@ public class TCPConnection{
 						System.out.println("Allowed commands: !login !list");
 					}
 				}	
+				if(input.startsWith("!logout")){
+					username="";
+				}
 			}
 
 		}catch (ConnectException e){
