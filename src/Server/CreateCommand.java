@@ -75,6 +75,7 @@ public class CreateCommand implements Command {
 		//create the auction and write it into the auctionlist
 		Auction a = new Auction(id, duration, owner, null, 0.0, descr);
 		auctionlist.add(a);
+		
 		con.send("An auction '"+a.getDescription()+"' with id "+a.getId()+" hase been created and will end on "+a.getEnd()+"."+"\n"+name+"> ");
 		return true;
 		

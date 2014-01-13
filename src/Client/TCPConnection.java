@@ -18,6 +18,8 @@ import java.security.AllPermission;
 public class TCPConnection{
 
 	private String username;
+	private Socket s;
+	private Thread t;
 	/**
 	 * TCP Connection from Client
 	 * @param host IP of Server
@@ -25,13 +27,13 @@ public class TCPConnection{
 	 */
 	public TCPConnection(String host,int port){
 		try{
-			final Socket s=new Socket(host,port);
+			s=new Socket(host,port);
 			BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
 			String input;
-			Runnable read=new Runnable() {
+			Thread read=new Thread() {
+				boolean t=true;
 				@Override
 				public void run() {
-					boolean t=true;
 					while(t){
 						try{
 							System.out.print(readMessage(s));
@@ -42,9 +44,11 @@ public class TCPConnection{
 					}
 
 				}
+				public void shutdown(){
+					this.t=false;
+				}
 			};
-			Thread t=new Thread(read);
-			t.start();
+			read.start();
 			username="";
 			System.out.print("> ");
 			while (true) {		
@@ -52,11 +56,11 @@ public class TCPConnection{
 				
 				
 				if(!username.equals("")){
-					sendMessage(s, input+"&&"+username);
+					sendMessage(input+"&&"+username);
 					
 				}else{
 					if(input.startsWith("!login")||input.startsWith("!list")){
-						sendMessage(s, input);
+						sendMessage(input);
 					}else{
 						System.out.print("Allowed commands: !login !list\n> ");
 					}
@@ -70,6 +74,11 @@ public class TCPConnection{
 				}
 				if(input.equals("!logout")){
 					username="";
+				}
+				if(input.equals("!end")){
+					//read.shut
+					s.close();
+					
 				}
 				
 			}
@@ -86,8 +95,8 @@ public class TCPConnection{
 	 * @param nachricht
 	 * @throws IOException
 	 */
-	public void sendMessage(Socket socket, String nachricht) throws IOException {
-		PrintWriter printWriter =new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+	public void sendMessage(String nachricht) throws IOException {
+		PrintWriter printWriter =new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
 		printWriter.print(nachricht);
 		printWriter.flush();
 	}

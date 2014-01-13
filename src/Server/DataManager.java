@@ -41,6 +41,7 @@ public class DataManager {
 	public void saveData() {
 		try {
 			ObjectOutputStream save = new ObjectOutputStream(saveFile);
+			//System.out.println(save.);
 			save.writeObject(auctionlist);
 			save.close();
 		} catch ( IOException e ) {
@@ -65,36 +66,6 @@ public class DataManager {
 			auctionlist=new ArrayList<Auction>();
 		}
 	}
-
-	/**
-	 * add an auction to the array
-	 * @param auction auction to add
-	 * @return true auction was added
-	 */
-	public boolean addAuction(Auction auction) {
-		auctionlist.add(auctionlist.size(), auction);
-		return false;
-	}
-	/**
-	 * bid to an auction
-	 * @param id auction to bid on
-	 * @param bet	amount to bed on the auction
-	 * @return	true if bid was correct -> highest bidder
-	 */
-	public boolean bidAuction(int id, double bet) {
-		for(int i = 0; i<auctionlist.size();i++){
-			if(auctionlist.get(i).getId()==id && auctionlist.get(i).getHighestbid()==bet ){
-				Auction a = new Auction(id, auctionlist.get(i).getDuration(), auctionlist.get(i).getOwner(), auctionlist.get(i).getHighestbidder(), bet, auctionlist.get(i).getDescription());
-				auctionlist.remove(i);
-				auctionlist.add(i, a);
-				return true;
-			}else{
-				return false;
-			}
-		}
-		return false;
-	}
-	
 }
 
 

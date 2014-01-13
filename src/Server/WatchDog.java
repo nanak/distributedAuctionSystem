@@ -46,60 +46,30 @@ public class WatchDog implements Runnable {
 	 */
 	public boolean checkAuctionStatus() {
 		for (int i = 0; i < auction.size(); i++) {
-			startAuction(auction.get(i));
-			auction.remove(i);
-			//			currentDate = new Date();
-			//			if (auction.get(i).getDate().getTime()+auction.get(i).getDuration()*1000 <= currentDate.getTime()) {
-			//				User owner=auction.get(i).getOwner();
-			//				User winner=auction.get(i).getHighestbidder();
-			//				String winnernoti;
-			//				String ownernoti;
-			//				if(winner==null){
-			//					ownernoti="The auction '"+auction.get(i).getDescription()+"' ended without bids! :(\n"+owner.getName()+"> ";
-			//					owner.sendNotification(ownernoti);
-			//				}else{
-			//					winnernoti="The auction '"+auction.get(i).getDescription()+"' has ended. You won with "+
-			//							auction.get(i).getHighestbid()+"!\n"+winner.getName()+"> ";
-			//					ownernoti="The auction '"+auction.get(i).getDescription()+"' has ended. "+winner.getName()+
-			//							" won with "+auction.get(i).getHighestbid()+".\n"+owner.getName()+"> ";
-			//					owner.sendNotification(ownernoti);
-			//					winner.sendNotification(winnernoti);
-			//				}
-			//				auction.remove(i);
-			//				return true;
-			//			}
+						currentDate = new Date();
+						if (auction.get(i).getDate().getTime()+auction.get(i).getDuration()*1000 <= currentDate.getTime()) {
+							User owner=auction.get(i).getOwner();
+							User winner=auction.get(i).getHighestbidder();
+							String winnernoti;
+							String ownernoti;
+							if(winner==null){
+								ownernoti="The auction '"+auction.get(i).getDescription()+"' ended without bids! :(\n"+owner.getName()+"> ";
+								owner.sendNotification(ownernoti);
+							}else{
+								winnernoti="The auction '"+auction.get(i).getDescription()+"' has ended. You won with "+
+										auction.get(i).getHighestbid()+"!\n"+winner.getName()+"> ";
+								ownernoti="The auction '"+auction.get(i).getDescription()+"' has ended. "+winner.getName()+
+										" won with "+auction.get(i).getHighestbid()+".\n"+owner.getName()+"> ";
+								owner.sendNotification(ownernoti);
+								winner.sendNotification(winnernoti);
+							}
+							auction.remove(i);
+							return true;
+						}
 		}
 
 		return false;
 	}
-
-	public void startAuction(final Auction a){
-		TimerTask action = new TimerTask() {
-			public void run() {
-				User owner=a.getOwner();
-				User winner=a.getHighestbidder();
-				String winnernoti;
-				String ownernoti;
-				if(winner==null){
-					ownernoti="The auction '"+a.getDescription()+"' ended without bids! :(\n"+owner.getName()+"> ";
-					owner.sendNotification(ownernoti);
-				}else{
-					winnernoti="The auction '"+a.getDescription()+"' has ended. You won with "+
-							a.getHighestbid()+"!\n"+winner.getName()+"> ";
-					ownernoti="The auction '"+a.getDescription()+"' has ended. "+winner.getName()+
-							" won with "+a.getHighestbid()+".\n"+owner.getName()+"> ";
-					owner.sendNotification(ownernoti);
-					winner.sendNotification(winnernoti);
-				}
-
-			}
-
-		};
-		Timer caretaker = new Timer();
-		caretaker.schedule(action,a.getDuration()*1000);
-	}
-
-
 	@Override
 	public void run() {
 		while(true){
