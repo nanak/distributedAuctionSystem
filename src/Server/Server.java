@@ -1,5 +1,6 @@
 package Server;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
@@ -43,12 +44,17 @@ public class Server{
 		Runnable check=new Runnable() {
 			@Override
 			public void run() {
-				Scanner console = new Scanner(System.in);
-				System.out.print("Press any key to exit");
-				String guess = console.next();
-				data.saveData();
-				System.out.println("Server is saving data and shutting down");
-				System.exit(1);
+				try {
+					System.out.print("Press any key to exit");
+					System.in.read();
+					data.saveData();
+					System.out.println("Server is saving data and shutting down");
+					System.exit(1);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 			}
 		};
 		Thread t=new Thread(check);
