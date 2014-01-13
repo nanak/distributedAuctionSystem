@@ -78,6 +78,7 @@ public class BidCommand implements Command {
 				break;
 			}
 		}
+		
 		if(bidder==null){
 			con.send("You have to log in first!\n> ");
 			return false;

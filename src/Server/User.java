@@ -49,9 +49,6 @@ public class User {
 		return lastSeen;
 	}
 
-	public void setLastSeen(Date lastSeen) {
-		this.lastSeen = lastSeen;
-	}
 
 	public void setName(String name) {
 		this.name = name;
@@ -69,8 +66,8 @@ public class User {
 		return this.online;
 	}
 
-	public Date setLastSeen() {
-		return this.lastSeen;
+	public void setLastSeen() {
+		this.lastSeen=new Date();
 	}
 
 	public String getIP(){
