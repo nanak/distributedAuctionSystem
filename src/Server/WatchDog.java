@@ -50,6 +50,7 @@ public class WatchDog implements Runnable {
 					auction.get(i).getOwner().sendNotification(auction.get(i).getHighestbidder().getName()+" won this auction with the highest bid of"+auction.get(i).getHighestbid());
 					auction.get(i).getHighestbidder().sendNotification("You won this auction with the highest bid of"+auction.get(i).getHighestbid());
 				}
+				auction.remove(i);
 				//auction.get(i).getHighestbidder().sendNotification("du hast bei der auktion gewonnen");
 				return true;
 			}
