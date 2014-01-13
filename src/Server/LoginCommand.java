@@ -69,6 +69,7 @@ public class LoginCommand implements Command {
 			//if the user is already in the list and is not online yet, the login succeeds
 			if(login.getOnline()==false){
 				login.setOnline(true);
+				login.getNotifications();
 				con.send("Successfully logged in as "+loggername+"!"+"\n"+loggername+"> ");
 				return true;
 			}

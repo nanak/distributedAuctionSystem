@@ -6,13 +6,10 @@ package Server;
  */
 public class Notification {
  
-	private String name;
+	private String data;
 	 
-	private String type;
-	
-	public Notification(String name, String type){
-		this.name=name;
-		this.type=type;
+	public Notification(String data){
+		this.data=data;
 	}
 	/**
 	 * Returns the notification as a String
@@ -20,7 +17,7 @@ public class Notification {
 	 */
 	@Override
 	public String toString() {
-		return this.name+":"+this.type;
+		return this.data;
 	}
 	 
 }
