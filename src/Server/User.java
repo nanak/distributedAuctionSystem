@@ -78,6 +78,14 @@ public class User {
 	}
 
 	public void sendNotification(String message){
+
+//		if(this.getOnline()){
+//			for(int x=0;x<this.getNotifications().size();x++){
+//				this.getNotifications().get(x).toString();
+//			}
+//		}
+
+
 		try{
 			DatagramSocket toSocket = new DatagramSocket();
 			InetAddress ia;

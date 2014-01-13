@@ -67,7 +67,6 @@ public class ManageConnection implements Runnable {
 			char[] buffer = new char[200];
 			int length = in.read(buffer, 0, 200); // blockiert bis Nachricht empfangen
 			String message = new String(buffer, 0, length);
-			//System.out.println(message); //received command as string!
 			String []msg=message.split("&&");
 			String b=msg[0];
 			if(msg.length<2){

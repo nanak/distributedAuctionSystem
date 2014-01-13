@@ -34,10 +34,10 @@ public class TCPConnection{
 					boolean t=true;
 					while(t){
 						try{
-							System.out.println(readMessage(s));
+							System.out.print(readMessage(s));
 						}catch (Exception e){
 							t=false;
-							System.out.println("Loss connection to server");
+							System.out.println("Connection to server lost!");
 						}
 					}
 
@@ -46,15 +46,11 @@ public class TCPConnection{
 			Thread t=new Thread(read);
 			t.start();
 			username="";
-			while (true) {
+			System.out.print("> ");
+			while (true) {		
 				input = bufferRead.readLine();
-				if(input.startsWith("!login")){
-					try{
-						username=input.split(" ")[1];
-					}catch (ArrayIndexOutOfBoundsException e){
-						username="";
-					}
-				}
+				
+				
 				if(!username.equals("")){
 					sendMessage(s, input+"&&"+username);
 					
@@ -62,9 +58,20 @@ public class TCPConnection{
 					if(input.startsWith("!login")||input.startsWith("!list")){
 						sendMessage(s, input);
 					}else{
-						System.out.println("Allowed commands: !login !list");
+						System.out.print("Allowed commands: !login !list\n> ");
 					}
-				}	
+				}
+				if(input.startsWith("!login")){
+					try{
+						username=input.split(" ")[1];
+					}catch (ArrayIndexOutOfBoundsException e){
+						username="";
+					}
+				}
+				if(input.equals("!logout")){
+					username="";
+				}
+				
 			}
 
 		}catch (ConnectException e){

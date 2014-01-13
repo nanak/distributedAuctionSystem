@@ -2,6 +2,7 @@ package Client;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.SocketException;
 /**
  * Receives the commands from the server
@@ -32,16 +33,8 @@ public class ServerListener implements Runnable{
 			while ( true ){
 				// Auf Anfrage warten (DatagramPacket)
 				DatagramPacket packet = new DatagramPacket( new byte[1024], 1024 );
-				System.out.println("LOl");
 				socket.receive( packet ); //tatsaechliches empfangen
 				System.out.println(new String(packet.getData()));
-				// Empfänger auslesen (brauchma nicht, td mal drin lassen weils nett is)
-//				InetAddress address = packet.getAddress();
-//				int         port    = packet.getPort();
-//				int         len     = packet.getLength();
-//				byte[]      data    = packet.getData();
-//				System.out.printf( "Anfrage von %s vom Port %d mit der Länge %d:%n%s%n",
-//						address, port, len, new String( data, 0, len ) );
 			}
 		}catch (Exception e){
 			e.printStackTrace();
