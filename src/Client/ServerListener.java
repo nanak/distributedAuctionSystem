@@ -19,8 +19,8 @@ public class ServerListener implements Runnable{
 		try {
 			this.socket=new DatagramSocket(port);	
 		} catch (SocketException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("UDP Server already running!");
+			System.exit(1);
 		}
 
 	}

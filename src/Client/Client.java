@@ -11,7 +11,6 @@ public class Client {
 	
 	private TCPConnection tcp;
 	
-	private UDPConnection udp;
 	 
 	private ServerListener serverListener;
 	

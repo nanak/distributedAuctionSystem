@@ -1,9 +1,6 @@
 package Server;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
-
-import Server.DataManager;
 /**
  * The create command implementation, which includes the logic to create an auction.
  * 

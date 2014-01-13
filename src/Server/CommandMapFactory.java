@@ -3,9 +3,20 @@ package Server;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Command map factory
+ * Command pattern to add new commands
+ * @author Tobi,Nanak
+ *
+ */
 public class CommandMapFactory {
 	private ConcurrentHashMap<String, Command> map;
 	private  ArrayList<User> users;
+	/**
+	 * Constructor
+	 * @param auctions auction list
+	 * @param users user list
+	 */
 	public CommandMapFactory(ArrayList<Auction> auctions, ArrayList<User> users){
 		this.users=users;
 		map = new ConcurrentHashMap<String, Command>();	
@@ -15,6 +26,13 @@ public class CommandMapFactory {
 		map.put("!list", new ListCommand(auctions));
 		map.put("!login", new LoginCommand(users));	
 	}
+	/**
+	 * Runs a command on the server
+	 * @param cmd the command as a string
+	 * @param con the connection
+	 * @param name the name of user
+	 * @param ip the ip of user
+	 */
 	public void runCommand(String cmd , ManageConnection con, String name, String ip){
 		//System.out.println(cmd);
 		Command c = (Command) map.get(cmd.split(" ")[0]);

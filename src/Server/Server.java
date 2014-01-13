@@ -1,8 +1,5 @@
 package Server;
 
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
@@ -12,8 +9,6 @@ import java.util.concurrent.ExecutorService;
  *
  */
 public class Server{
- 
-	private int tcpport;
 	 
 	private ExecutorService pool;
 	 
@@ -22,8 +17,6 @@ public class Server{
 	private DataManager data;
 	 
 	private ArrayList<Auction> auction;
-	 
-	private ArrayList<ManageConnection> manageConnection;
 	 
 	private ArrayList<User> user;
 	 
@@ -60,47 +53,13 @@ public class Server{
 		};
 		Thread t=new Thread(check);
 		t.start();
-//		try {
-//			sendNotification(new User("Tobi",true,null,null,InetAddress.getLocalHost().toString()));
-//		} catch (UnknownHostException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 	}
 	
-	
-	/**
-	 * Interprets the commands it gets
-	 * @param command Command to interpret
-	 * @return true if command is valid, false if command is invalid
-	 */
-	public boolean receive(String command) {
-		return false;
-	}
 	/**
 	 * Stops the listening and shuts down the server safely
 	 */
 	public void shutdown() {
 	 
 	}
-	/**
-	 * Accepts incoming connections
-	 */
-	public void accept() {
-	 
-	}
-	/**
-	 * Prints the current 
-	 */
-	public void printAction(String command) {
-		System.out.println(command);
-	}
-	/**
-	 * Exits the server program
-	 */
-	public void end() {
-	 
-	}
-	 
 }
  

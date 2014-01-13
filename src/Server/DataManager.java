@@ -20,7 +20,10 @@ public class DataManager {
 	FileOutputStream saveFile;
 	FileInputStream loadFile;
 
-
+	/**
+	 * can save and load the auctions from a file
+	 * @param list auctions to be saved and loaded
+	 */
 	public DataManager(ArrayList<Auction> list) {
 		try {
 			saveFile = new FileOutputStream("store");
@@ -30,7 +33,6 @@ public class DataManager {
 			e.printStackTrace();
 		}
 		this.auctionlist=list;
-		String text = 	""; 
 	}
 
 	/**
