@@ -1,7 +1,6 @@
 package Server;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * The logout command implementation, which includes the logic to logout as a logged-in user.
@@ -34,35 +33,45 @@ public class LogoutCommand implements Command{
 	public boolean execute(String cmd, ManageConnection con, String name, String ip) {
 		//!logout		
 		User logout = null;
+		String username="";
 		//userlist are not allowed to be empty
 		if(!userlist.isEmpty()){
-			//search for the user using the username of the logged in user
+			//Split the command by space/s. Command has to consist of exactly 2 arguments otherwise it's invalid.
+			String[] s=null;
+			try{
+				s=cmd.split("\\s+");
+				username=s[1];
+			}catch (ArrayIndexOutOfBoundsException e){
+				username=name;
+			}
+			//search for the user using the username of the luser who did/tried to login last
 			for(int i=0; i<userlist.size(); i++){
-				if(userlist.get(i).getName().equals(name)){
+				if(userlist.get(i).getName().equals(username)){
 					logout=userlist.get(i);
 					break;
 				}
 			}
 			if(logout==null){
 				//if there is no such user in the userlist
-				con.send("You have to login first!");
+				con.send("You have to login first!"+"\n> ");
 				return false;
 			}
+			
 		}
 		else{
 			//if userlist is empty somehow
-			con.send("You have to log in first!");
+			con.send("You have to log in first!"+"\n> ");
 			return false;
 		}
 		//if the user is in the userlist and is online, he gets logged out 
 		if(logout.getOnline()==true){
 			logout.setOnline(false);
-			con.send("Successfully logged out as "+logout.getName()+"!");	
+			con.send("Successfully logged out as "+logout.getName()+"!"+"\n> ");	
 			return true;
 		}
 		else{
 			//logout fails if the user found in the list is set as offline
-			con.send("You have to log in first!");
+			con.send("You have to log in first!"+"\n> ");
 			return false;
 		}
 		

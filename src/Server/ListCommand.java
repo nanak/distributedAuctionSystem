@@ -47,12 +47,18 @@ public class ListCommand implements Command {
 				}
 				out=out+i+". '"+a.getDescription()+"' "+a.getOwner().getName()+" "+a.getEnd()+" "+a.getHighestbid()+" "+highestBidder+"\n";
 			}
-			con.send(out);
+			if(name.equals(""))
+				con.send(out+"\n> ");
+			else
+				con.send(out+"\n"+name+"> ");
 			return true;
 		}
 		else{
 			//inform the user if there are no active auctions
-			con.send("No auctions available.");
+			if(name.equals(""))
+				con.send("No auctions available."+"\n> ");
+			else
+				con.send("No auctions available.\n"+name+"> ");			
 			return false;
 		}
 	}

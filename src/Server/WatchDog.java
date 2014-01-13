@@ -43,15 +43,16 @@ public class WatchDog implements Runnable {
 	 * @return true if auction has ended, false if auction has not ended
 	 */
 	public boolean checkAuctionStatus() {
-		String end;
 		for (int i = 0; i < auction.size(); i++) {
 			currentDate = new Date();
 			if (auction.get(i).getDate().getTime()+auction.get(i).getDuration()*1000 <= currentDate.getTime()) {
 				if(auction.get(i).getHighestbidder()==null){
-					auction.get(i).getOwner().sendNotification("!auction-ended without bids for "+auction.get(i).getDescription());
+					auction.get(i).getOwner().sendNotification("The auction '"+auction.get(i).getDescription()+"' ended without bids! :(\n"+auction.get(i).getOwner().getName()+"> ");
 				}else{
-					auction.get(i).getOwner().sendNotification("The auction '"+auction.get(i).getDescription()+"' has ended. "+auction.get(i).getHighestbidder().getName()+" won with "+auction.get(i).getHighestbid()+".");
-					auction.get(i).getHighestbidder().sendNotification("The auction '"+auction.get(i).getDescription()+"' has ended. You won with "+auction.get(i).getHighestbid()+"!");
+					auction.get(i).getOwner().sendNotification("The auction '"+auction.get(i).getDescription()+"' has ended. "+auction.get(i).getHighestbidder().getName()+
+							" won with "+auction.get(i).getHighestbid()+".\n"+auction.get(i).getOwner().getName()+"> ");
+					auction.get(i).getHighestbidder().sendNotification("The auction '"+auction.get(i).getDescription()+"' has ended. You won with "+
+							auction.get(i).getHighestbid()+"!\n"+auction.get(i).getHighestbidder().getName()+"> ");
 				}
 				auction.remove(i);
 				return true;

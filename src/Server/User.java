@@ -89,7 +89,6 @@ public class User {
 		try{
 			DatagramSocket toSocket = new DatagramSocket();
 			InetAddress ia;
-			System.out.println(ip);
 			ia = InetAddress.getByName(ip);
 			String s = message;
 			byte[] data = s.getBytes();

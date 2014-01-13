@@ -39,7 +39,7 @@ public class CreateCommand implements Command {
 		//!create 25200 Super small notebook
 		//userlist are not allowed to be empty
 		if(userlist.isEmpty()==true){
-			con.send("You have to login first!");
+			con.send("You have to login first!\n> ");
 			return false;
 		}
 		//Split the command by space/s. Command has to consist of at least 3 arguments otherwise it's invalid.
@@ -47,11 +47,11 @@ public class CreateCommand implements Command {
 		try{
 			s=cmd.split("\\s+");
 		}catch (ArrayIndexOutOfBoundsException e){
-			con.send("Create not possible. Only 1 argument given. Syntax: !create duration description");
+			con.send("Create not possible. Only 1 argument given. Syntax: !create duration description"+"\n"+name+"> ");
 			return false;
 		}
 		if(s.length<3){
-			con.send("Create not possible. 3 or more expected but "+s.length+" given.  Syntax: !create duration description");
+			con.send("Create not possible. 3 or more expected but "+s.length+" given.  Syntax: !create duration description"+"\n"+name+"> ");
 			return false;
 		}
 		//duration has to be a number
@@ -59,7 +59,7 @@ public class CreateCommand implements Command {
 		try{
 			duration=Integer.parseInt(s[1]);
 		 }catch(NumberFormatException e){
-			 con.send("Create not possible. The duration "+s[1]+" is not a number");
+			 con.send("Create not possible. The duration "+s[1]+" is not a number"+"\n"+name+"> ");
 			 return false;
 		}
 		int id=auctionlist.size();
@@ -78,7 +78,7 @@ public class CreateCommand implements Command {
 		//create the auction and write it into the auctionlist
 		Auction a = new Auction(id, duration, owner, null, 0.0, descr);
 		auctionlist.add(a);
-		con.send("An auction '"+a.getDescription()+"' with id "+a.getId()+" hase been created and will end on "+a.getEnd()+".");
+		con.send("An auction '"+a.getDescription()+"' with id "+a.getId()+" hase been created and will end on "+a.getEnd()+"."+"\n"+name+"> ");
 		return true;
 		
 	}

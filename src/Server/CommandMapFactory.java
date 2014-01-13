@@ -19,7 +19,10 @@ public class CommandMapFactory {
 		try{
 			c.execute(cmd, con,  name,  ip);
 		}catch (Exception e){
-			con.send(cmd+" Command not found");
+			if(name.equals(""))
+				con.send(cmd+" Command not found\n> ");
+			else
+				con.send(cmd+"Command not found\n"+name+"> ");		
 		}
 
 	}
