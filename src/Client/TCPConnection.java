@@ -61,7 +61,14 @@ public class TCPConnection{
 				}else{
 					if(input.startsWith("!login")||input.startsWith("!list")){
 						sendMessage(input);
-					}else{
+					}else if(input.equals("!info")){
+						System.out.print("Commands:\n!list\n!!login username\n!create duration description\n!bid auctionId amount\n!logout\n"+username+">");
+					}
+					else if(input.equals("!end")){
+						//read.shut
+						s.close();
+					}
+					else{
 						System.out.print("Allowed commands: !login !list\n> ");
 					}
 				}
@@ -75,12 +82,6 @@ public class TCPConnection{
 				if(input.equals("!logout")){
 					username="";
 				}
-				if(input.equals("!end")){
-					//read.shut
-					s.close();
-					
-				}
-				
 			}
 
 		}catch (ConnectException e){
