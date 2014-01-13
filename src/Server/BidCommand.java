@@ -34,11 +34,11 @@ public class BidCommand implements Command {
 		try{
 			s=cmd.split("\\s+");
 		}catch (ArrayIndexOutOfBoundsException e){
-			con.send("Bid not possible. Only 1 argument given");
+			con.send("Bid not possible. Only 1 argument given. Syntax: !bid id amount");
 			return false;
 		}
 		if(s.length<3){
-			con.send("Create not possible. 3 or more expected but "+s.length+" given.");
+			con.send("Create not possible. 3 or more expected but "+s.length+" given. Syntax: !bid id amount");
 			return false;
 		}
 		int aid=0;

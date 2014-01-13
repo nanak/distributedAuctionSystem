@@ -49,7 +49,11 @@ public class TCPConnection{
 			while (true) {
 				input = bufferRead.readLine();
 				if(input.startsWith("!login")){
-					username=input.split(" ")[1];
+					try{
+						username=input.split(" ")[1];
+					}catch (ArrayIndexOutOfBoundsException e){
+						username="";
+					}
 				}
 				if(!username.equals("")){
 					sendMessage(s, input+"&&"+username);

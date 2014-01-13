@@ -35,12 +35,12 @@ public class ServerListener implements Runnable{
 				DatagramPacket packet = new DatagramPacket( new byte[1024], 1024 );
 				socket.receive( packet ); //tatsaechliches empfangen
 				System.out.println("GOT");
-				// Empfänger auslesen (brauchma nicht, td mal drin lassen weils nett is)
+				// Empfaenger auslesen (brauchma nicht, td mal drin lassen weils nett is)
 //				InetAddress address = packet.getAddress();
 //				int         port    = packet.getPort();
 //				int         len     = packet.getLength();
 //				byte[]      data    = packet.getData();
-//				System.out.printf( "Anfrage von %s vom Port %d mit der Länge %d:%n%s%n",
+//				System.out.printf( "Anfrage von %s vom Port %d mit der Laenge %d:%n%s%n",
 //						address, port, len, new String( data, 0, len ) );
 			}
 		}catch (Exception e){
