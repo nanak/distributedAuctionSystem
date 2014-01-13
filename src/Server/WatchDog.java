@@ -1,5 +1,8 @@
 package Server;
 
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -42,7 +45,6 @@ public class WatchDog implements Runnable {
 	public boolean checkAuctionStatus() {
 		for (int i = 0; i < auction.size(); i++) {
 			currentDate = new Date();
-			//System.out.println(auction.get(i).getDate().getTime()+auction.get(i).getDuration()*1000+" : "+currentDate.getTime());
 			if (auction.get(i).getDate().getTime()+auction.get(i).getDuration()*1000 <= currentDate.getTime()) {
 				if(auction.get(i).getHighestbidder()==null){
 					auction.get(i).getOwner().sendNotification("No bid on your auction :(");
@@ -51,7 +53,6 @@ public class WatchDog implements Runnable {
 					auction.get(i).getHighestbidder().sendNotification("You won this auction with the highest bid of"+auction.get(i).getHighestbid());
 				}
 				auction.remove(i);
-				//auction.get(i).getHighestbidder().sendNotification("du hast bei der auktion gewonnen");
 				return true;
 			}
 		}
@@ -70,5 +71,4 @@ public class WatchDog implements Runnable {
 			}
 		}
 	}
-
 }

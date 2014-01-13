@@ -1,15 +1,11 @@
 package Server;
 
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
-
-import Client.TCPConnection;
 /**
  * Server class
  * @author nanak
@@ -39,6 +35,8 @@ public class Server{
 	 * @param tcp TCP Port
 	 */
 	public Server(int tcpport) {
+		
+		
 		data=new DataManager(auction);
 		auction=new ArrayList<Auction>();
 		data.loadData();
