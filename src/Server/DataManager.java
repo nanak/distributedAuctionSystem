@@ -51,7 +51,7 @@ public class DataManager {
 			ObjectOutputStream save = new ObjectOutputStream(saveFile);
 			// System.out.println(save.);s
 			save.writeObject(auctionlist);
-			save.writeInt(auctionlist.size());
+			//save.writeInt(auctionlist.size());
 			save.flush();
 			save.close();
 		} catch (IOException e) {
