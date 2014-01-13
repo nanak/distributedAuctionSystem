@@ -22,9 +22,9 @@ public class Client {
 	 * @param udp	UDP port of the server
 	 */
 	public Client(String host, int tcp, int udp) {
-		this.tcp=new TCPConnection(host, tcp);
 		this.serverListener=new ServerListener(udp);
 		new Thread(serverListener).start();
+		this.tcp=new TCPConnection(host, tcp);
 	}
 	 
 	/**

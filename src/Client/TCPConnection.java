@@ -36,7 +36,7 @@ public class TCPConnection{
 						try{
 							System.out.println(readMessage(s));
 						}catch (Exception e){
-							//t=false;
+							t=false;
 							System.out.println("Loss connection to server");
 						}
 					}

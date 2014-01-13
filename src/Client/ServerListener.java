@@ -16,8 +16,7 @@ public class ServerListener implements Runnable{
 	 */
 	public ServerListener(int port) {
 		try {
-			this.socket=new DatagramSocket(port);
-			
+			this.socket=new DatagramSocket(port);	
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -33,8 +32,9 @@ public class ServerListener implements Runnable{
 			while ( true ){
 				// Auf Anfrage warten (DatagramPacket)
 				DatagramPacket packet = new DatagramPacket( new byte[1024], 1024 );
+				System.out.println("LOl");
 				socket.receive( packet ); //tatsaechliches empfangen
-				System.out.println(packet.getData());
+				System.out.println(new String(packet.getData()));
 				// Empfänger auslesen (brauchma nicht, td mal drin lassen weils nett is)
 //				InetAddress address = packet.getAddress();
 //				int         port    = packet.getPort();
