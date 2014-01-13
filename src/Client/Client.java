@@ -28,7 +28,7 @@ public class Client {
 	}
 	 
 	/**
-	 * Shuts down the client and gives free the ressources
+	 * Shuts down the client and gives free the resources
 	 */
 	public void shutdown() {
 	 

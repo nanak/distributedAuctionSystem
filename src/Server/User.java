@@ -78,12 +78,13 @@ public class User {
 	}
 
 	public void sendNotification(String message){
-		if(this.getOnline()){
-			for(int x=0;x<this.getNotifications().size();x++){
-				this.getNotifications().get(x).toString();
-			}
-		}
+//		if(this.getOnline()){
+//			for(int x=0;x<this.getNotifications().size();x++){
+//				this.getNotifications().get(x).toString();
+//			}
+//		}
 		try{
+			DatagramSocket toSocket = new DatagramSocket();
 			InetAddress ia;
 			ia = InetAddress.getByName(ip);
 			String s = message;
@@ -92,7 +93,6 @@ public class User {
 			DatagramPacket packet = new DatagramPacket( data, data.length, ia, 1234 );
 			//@SuppressWarnings("resource")
 			//dieses packet wird ueber das DatagramSocket versendet
-			DatagramSocket toSocket = new DatagramSocket();
 			toSocket.send( packet ); //tatsaechliches senden
 		}catch (Exception e){
 			e.printStackTrace();

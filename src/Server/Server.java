@@ -38,7 +38,7 @@ public class Server{
 	 * Constructor of the auction system server
 	 * @param tcp TCP Port
 	 */
-	public Server(int tcpport) {
+	public Server(int tcpport) {	
 		data=new DataManager(auction);
 		auction=new ArrayList<Auction>();
 		data.loadData();

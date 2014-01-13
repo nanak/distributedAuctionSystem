@@ -34,7 +34,7 @@ public class ServerListener implements Runnable{
 				// Auf Anfrage warten (DatagramPacket)
 				DatagramPacket packet = new DatagramPacket( new byte[1024], 1024 );
 				socket.receive( packet ); //tatsaechliches empfangen
-				System.out.println("GOT");
+				System.out.println(packet.getData());
 				// Empfänger auslesen (brauchma nicht, td mal drin lassen weils nett is)
 //				InetAddress address = packet.getAddress();
 //				int         port    = packet.getPort();

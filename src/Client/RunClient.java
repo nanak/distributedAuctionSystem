@@ -8,7 +8,7 @@ package Client;
  */
 public class RunClient {
 	public static void main (String [] args){
-		Client c=new Client("localhost", 1111, 1234);
+		Client c=new Client("127.0.0.1", 1111, 1234);
 	}
 	 
 }
