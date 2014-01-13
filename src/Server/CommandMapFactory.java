@@ -19,7 +19,7 @@ public class CommandMapFactory {
 		try{
 			c.execute(cmd, con,  name,  ip);
 		}catch (Exception e){
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println(cmd+ " Command not found"); //RETURN TO CLIENT!!
 			// TODO fix crash when writing !logou
 		}

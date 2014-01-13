@@ -24,6 +24,7 @@ public class Client {
 	public Client(String host, int tcp, int udp) {
 		this.tcp=new TCPConnection(host, tcp);
 		this.serverListener=new ServerListener(udp);
+		new Thread(serverListener).start();
 	}
 	 
 	/**

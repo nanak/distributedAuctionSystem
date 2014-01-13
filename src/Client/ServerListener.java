@@ -8,7 +8,7 @@ import java.net.SocketException;
  * @author Tobi
  *
  */
-public class ServerListener extends Thread{
+public class ServerListener implements Runnable{
 	DatagramSocket socket;
 	/**
 	 * The Listener for the UDP Connection
@@ -17,7 +17,7 @@ public class ServerListener extends Thread{
 	public ServerListener(int port) {
 		try {
 			this.socket=new DatagramSocket(port);
-			waitForConnection();
+			
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -34,6 +34,7 @@ public class ServerListener extends Thread{
 				// Auf Anfrage warten (DatagramPacket)
 				DatagramPacket packet = new DatagramPacket( new byte[1024], 1024 );
 				socket.receive( packet ); //tatsaechliches empfangen
+				System.out.println("GOT");
 				// Empfänger auslesen (brauchma nicht, td mal drin lassen weils nett is)
 //				InetAddress address = packet.getAddress();
 //				int         port    = packet.getPort();
@@ -46,8 +47,9 @@ public class ServerListener extends Thread{
 			e.printStackTrace();
 		}
 	}
-
-
-
+	@Override
+	public void run() {
+		waitForConnection();
+	}
 }
 

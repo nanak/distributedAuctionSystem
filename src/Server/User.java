@@ -90,7 +90,7 @@ public class User {
 			byte[] data = s.getBytes();
 			//Zum senden und empfangen wird DatagramPacket verwendet
 			DatagramPacket packet = new DatagramPacket( data, data.length, ia, 1234 );
-			@SuppressWarnings("resource")
+			//@SuppressWarnings("resource")
 			//dieses packet wird ueber das DatagramSocket versendet
 			DatagramSocket toSocket = new DatagramSocket();
 			toSocket.send( packet ); //tatsaechliches senden

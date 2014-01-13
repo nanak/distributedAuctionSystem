@@ -70,7 +70,6 @@ public class ManageConnection implements Runnable {
 			//System.out.println(message); //received command as string!
 			String []msg=message.split("&&");
 			String b=msg[0];
-			System.out.println(message);
 			if(msg.length<2){
 				msg=new String[2];
 				msg[0]=b;
