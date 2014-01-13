@@ -78,14 +78,14 @@ public class User {
 	}
 
 	public void sendNotification(String message){
-<<<<<<< HEAD
+
 //		if(this.getOnline()){
 //			for(int x=0;x<this.getNotifications().size();x++){
 //				this.getNotifications().get(x).toString();
 //			}
 //		}
-=======
->>>>>>> aa4c2db4f6aaba7c16eed3f5576e56ab20f47269
+
+
 		try{
 			DatagramSocket toSocket = new DatagramSocket();
 			InetAddress ia;
@@ -94,7 +94,7 @@ public class User {
 			String s = message;
 			byte[] data = s.getBytes();
 			//Zum senden und empfangen wird DatagramPacket verwendet
-			DatagramPacket packet = new DatagramPacket( data, data.length, ia, 12345 );
+			DatagramPacket packet = new DatagramPacket( data, data.length, ia, 1234 );
 			//@SuppressWarnings("resource")
 			//dieses packet wird ueber das DatagramSocket versendet
 			toSocket.send( packet ); //tatsaechliches senden

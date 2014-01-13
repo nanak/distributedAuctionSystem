@@ -14,14 +14,12 @@ public class CommandMapFactory {
 		map.put("!login", new LoginCommand(users));	
 	}
 	public void runCommand(String cmd , ManageConnection con, String name, String ip){
-		System.out.println(cmd);
+		//System.out.println(cmd);
 		Command c = (Command) map.get(cmd.split(" ")[0]);
 		try{
 			c.execute(cmd, con,  name,  ip);
 		}catch (Exception e){
-			//e.printStackTrace();
-			System.out.println(cmd+ " Command not found"); //RETURN TO CLIENT!!
-			// TODO fix crash when writing !logou
+			con.send(cmd+" Command not found");
 		}
 
 	}

@@ -3,25 +3,38 @@ package Server;
 import java.util.ArrayList;
 
 /**
- * The bid command implementation
+ * The bid command implementation. Includes the logic to bid on an auction.
  * @author Michaela Lipovits
+ * @version 2014-01-13
  *
  */
 public class BidCommand implements Command {
 	private ArrayList<Auction> auctionlist;
 	ArrayList<User> userlist;
 	
+	/**
+	 * constructor which sets the actionlist and the userlist.
+	 * 
+	 * @param auctionlist AuctionList consisting of all active auctions
+	 * @param userlist UserList consisting of all user that have ever logged in
+	 */
 	public BidCommand(ArrayList<Auction> auctionlist, ArrayList<User> userlist){
 		this.auctionlist=auctionlist;
 		this.userlist=userlist;
 	}
 	/**
-	 * executes the command
-	 * @param cmd command to execute
+	 * executes the command to bid on an auction
+	 * 
+	 * @param cmd usercommand
+	 * @param con ManagedConnection to send Messages to the user
+	 * @param name usernae
+	 * @param ip ip address of user
+	 * @return true if successful
 	 */
 	@Override
 	public boolean execute(String cmd, ManageConnection con, String name, String ip) {
 		//!bid <auction-id> <amount>
+		//Lists are not allowed to be empty
 		if(auctionlist.isEmpty()==true){
 			con.send("No auctions to bid on");
 			return false;
@@ -30,6 +43,7 @@ public class BidCommand implements Command {
 			con.send("You have to login first!");
 			return false;
 		}
+		//Split the command by space/s. Command has to consist of exactly 3 arguments otherwise it's invalid.
 		String[] s=null;
 		try{
 			s=cmd.split("\\s+");
@@ -37,10 +51,11 @@ public class BidCommand implements Command {
 			con.send("Bid not possible. Only 1 argument given. Syntax: !bid id amount");
 			return false;
 		}
-		if(s.length<3){
+		if(s.length!=3){
 			con.send("Create not possible. 3 or more expected but "+s.length+" given. Syntax: !bid id amount");
 			return false;
 		}
+		//id and amount have to be numbers
 		int aid=0;
 		double amount=0.0;
 		try{
@@ -55,6 +70,7 @@ public class BidCommand implements Command {
 			 con.send("Bid not possible. The amount "+s[2]+" is not a number");
 			 return false;
 		}
+		//find the bidder in the userlist by the username given as parameter
 		User bidder=null;
 		for(int i=0; i<userlist.size(); i++){
 			if(userlist.get(i).getName().equals(name)){
@@ -62,14 +78,30 @@ public class BidCommand implements Command {
 				break;
 			}
 		}
+		if(bidder==null){
+			con.send("You have to log in first!");
+			return false;
+		}
+		//try to find the auction with the id from the command
 		Auction a=null;
 		try{
 			a=auctionlist.get(aid);
 		}catch (IndexOutOfBoundsException e){
 			con.send("Bid not possible. No auction found with id "+aid);
 			return false;
-		}	
+		}
+		//owner should not be able to bid on his own auction
+		if(bidder.getName().equals(a.getOwner().getName())){
+			con.send("You cannot bid on your own auction!");
+			return false;
+		}
+		//check if this new bid is higher then the highestBid saved in the auction object
 		if(a.getHighestbid()<amount){
+			//You have been overbid on 'Super small notebook'
+			//Notify old highestBidder if there is one
+			if(a.getHighestbidder()!=null){
+				a.getHighestbidder().sendNotification("You have been overbid on '"+a.getDescription()+"'.");
+			}
 			a.setHighestbid(amount);
 			a.setHighestbidder(bidder);
 			con.send("You successfully bid with "+amount+" on '"+a.getDescription()+"'.");
