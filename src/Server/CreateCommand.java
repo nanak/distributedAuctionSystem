@@ -28,11 +28,11 @@ public class CreateCommand implements Command {
 		try{
 			s=cmd.split("\\s+");
 		}catch (ArrayIndexOutOfBoundsException e){
-			con.send("Create not possible. Only 1 argument given");
+			con.send("Create not possible. Only 1 argument given. Syntax: !create duration description");
 			return false;
 		}
 		if(s.length<3){
-			con.send("Create not possible. 3 or more expected but "+s.length+" given.");
+			con.send("Create not possible. 3 or more expected but "+s.length+" given.  Syntax: !create duration description");
 			return false;
 		}
 		int duration=0;

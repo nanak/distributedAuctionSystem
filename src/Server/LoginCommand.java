@@ -25,11 +25,11 @@ public class LoginCommand implements Command {
 		try{
 			s=cmd.split("\\s+");
 		}catch (ArrayIndexOutOfBoundsException e){
-			con.send("Login not possible. Wrong number of arguments. 1 given but 2 expected.");
+			con.send("Login not possible. Wrong number of arguments. Syntax: !login username");
 			return false;
 		}
 		if(s.length!=2){
-			con.send("Login not possible. Wrong number of arguments. "+s.length+" given but 2 expected.");
+			con.send("Login not possible. Wrong number of arguments. "+s.length+" given but 2 expected. Syntax: !login username");
 			return false;
 		}
 		boolean exists=false;
