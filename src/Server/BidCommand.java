@@ -26,6 +26,10 @@ public class BidCommand implements Command {
 			con.send("No auctions to bid on");
 			return false;
 		}
+		if(userlist.isEmpty()==true){
+			con.send("You have to login first!");
+			return false;
+		}
 		String[] s=null;
 		try{
 			s=cmd.split("\\s+");
@@ -62,7 +66,7 @@ public class BidCommand implements Command {
 		try{
 			a=auctionlist.get(aid);
 		}catch (IndexOutOfBoundsException e){
-			con.send("Bid not possible. No auction found with id "+a.getId());
+			con.send("Bid not possible. No auction found with id "+aid);
 			return false;
 		}	
 		if(a.getHighestbid()<amount){
