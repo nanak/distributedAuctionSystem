@@ -1,4 +1,4 @@
-package test.ServerTest;
+package ServerTest;
 
 import java.net.Socket;
 import java.sql.Date;
@@ -35,7 +35,6 @@ public class ListCommandTest {
 
 		ListCommand result = new ListCommand(auctionlist);
 
-		// add additional test code here
 		assertNotNull(result);
 	}
 
@@ -72,7 +71,7 @@ public class ListCommandTest {
 		throws Exception {
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1", 1234);
 		u.add(user);
 		Auction auc= new Auction(0, 10000, user, null, 0.0, "muhkuhli");
 		a.add(auc);
