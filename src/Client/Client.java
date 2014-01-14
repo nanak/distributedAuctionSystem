@@ -3,6 +3,7 @@ package Client;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.ConnectException;
 
 /**
  * The client of Auction System
@@ -28,43 +29,55 @@ public class Client {
 		this.serverListener=new ServerListener(udp);
 		new Thread(serverListener).start();
 		this.tcp=new TCPConnection(host, tcp);
+		listenConsole(udp);
+	}
+
+	public void listenConsole(int udp){
 		BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
-		String input = null;
 		String username="";
+		String input;
 		System.out.print("> ");
-		while (true) {		
-			try {
+		try {
+			while (true) {		
 				input = bufferRead.readLine();
-			} catch (IOException e1) {
-				System.out.println("cant read command line");
-			}
-			try {
 				if(!username.equals("")){
 					this.tcp.sendMessage(input+"&&"+username);
+
 				}else{
 					if(input.startsWith("!login")||input.startsWith("!list")){
-						this.tcp.sendMessage(input);
-					}else{
+						if(input.startsWith("!login")){
+							this.tcp.sendMessage(input+"port:"+udp);
+						}else{
+							this.tcp.sendMessage(input);
+						}
+
+					}else if(input.equals("!info")){
+						System.out.print("Commands:\n!list\n!!login username\n!create duration description\n!bid auctionId amount\n!logout\n"+username+">");
+					}
+					else if(input.equals("!end")){
+						//read.shut
+						//this.tcp.close();
+					}
+					else{
 						System.out.print("Allowed commands: !login !list\n> ");
 					}
 				}
-			} catch (IOException e) {
-				System.out.println("cant send message");
-			}
-			if(input.startsWith("!login")){
-				try{
-					username=input.split(" ")[1];
-				}catch (ArrayIndexOutOfBoundsException e){
+				if(input.startsWith("!login")){
+					try{
+						username=input.split(" ")[1];
+					}catch (ArrayIndexOutOfBoundsException e){
+						username="";
+					}
+				}
+				if(input.equals("!logout")){
 					username="";
 				}
-			}
-			if(input.equals("!logout")){
-				username="";
-			}
-			if(input.equals("!end")){
+
 
 			}
-
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 	}
 

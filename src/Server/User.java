@@ -1,5 +1,6 @@
 package Server;
 
+import java.io.Serializable;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -11,7 +12,7 @@ import java.util.Date;
  * @author Tobi
  *
  */
-public class User {
+public class User implements Serializable{
 
 	private String name;
 
@@ -22,6 +23,8 @@ public class User {
 	private Date lastSeen;
 
 	private String ip;
+	
+	private int udpport;
 	/**
 	 * User Model Constructor
 	 * @param name username
@@ -29,12 +32,13 @@ public class User {
 	 * @param notifications notifications to send
 	 * @param lastSeen last action
 	 */
-	public User(String name, boolean online, Date lastSeen, String ip){
+	public User(String name, boolean online, Date lastSeen, String ip, int udpport){
 		this.name=name;
 		this.online=online;
 		this.notifications=new ArrayList<Notification>();
 		this.lastSeen=lastSeen;
 		this.ip=ip;
+		this.udpport=udpport;
 	}
 
 	public void getNotifications() {
@@ -87,7 +91,7 @@ public class User {
 				String s = message;
 				byte[] data = s.getBytes();
 				//Zum senden und empfangen wird DatagramPacket verwendet
-				DatagramPacket packet = new DatagramPacket( data, data.length, ia, 1234 );
+				DatagramPacket packet = new DatagramPacket( data, data.length, ia, udpport );
 				//@SuppressWarnings("resource")
 				//dieses packet wird ueber das DatagramSocket versendet
 				toSocket.send( packet ); //tatsaechliches senden

@@ -51,7 +51,7 @@ public class LogoutCommandTest {
 		throws Exception {
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		LogoutCommand fixture = new LogoutCommand(u);
 		String cmd = "!logout";
@@ -75,7 +75,7 @@ public class LogoutCommandTest {
 		throws Exception {
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", false, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", false, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		LogoutCommand fixture = new LogoutCommand(u);
 		String cmd = "!logout";
@@ -99,7 +99,7 @@ public class LogoutCommandTest {
 		throws Exception {
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		LogoutCommand fixture = new LogoutCommand(new ArrayList<User>());
 		String cmd = "!logout";
@@ -123,7 +123,7 @@ public class LogoutCommandTest {
 		throws Exception {
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", false, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", false, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		LogoutCommand fixture = new LogoutCommand(u);
 		String cmd = "!logout";

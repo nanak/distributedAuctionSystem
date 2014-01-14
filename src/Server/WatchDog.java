@@ -1,12 +1,7 @@
 package Server;
 
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * WatchDog to clean resources and set user online also watch if auction ends
