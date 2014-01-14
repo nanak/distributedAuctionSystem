@@ -57,6 +57,7 @@ public class Server{
 //					TCPServer tcpS = (TCPServer)tcp;
 //					tcpS.setHasToRun(false);
 					tcp.setHasToRun(false);
+//					tcp.isHasToRun();
 					watchDog.setHasToRun(false);
 					
 					shutdown();
@@ -78,7 +79,7 @@ public class Server{
 	 * Stops the listening and shuts down the server safely
 	 */
 	public void shutdown() {
-		serverthread.stop();
+//		serverthread.stop();
 	}
 }
 
