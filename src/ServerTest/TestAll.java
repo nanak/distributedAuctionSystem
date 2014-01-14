@@ -20,6 +20,7 @@ import org.junit.runners.Suite;
 	BidCommandTest.class,
 	LoginCommandTest.class,
 	LogoutCommandTest.class,
+	DataManagerTest.class
 })
 public class TestAll {
 
