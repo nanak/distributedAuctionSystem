@@ -1,8 +1,12 @@
-package ServerTest;
+package test.ServerTest;
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+
+import ClientTest.ServerListenerTest;
+
+
 
 /**
  * The class <code>TestAll</code> builds a suite that can be used to run all
@@ -20,7 +24,12 @@ import org.junit.runners.Suite;
 	BidCommandTest.class,
 	LoginCommandTest.class,
 	LogoutCommandTest.class,
-	DataManagerTest.class
+	DataManagerTest.class,
+	NotifiyTest.class,
+	ServerclasTest.class,
+	UserTest.class,
+	RunServerTest.class,
+	ServerListenerTest.class
 })
 public class TestAll {
 

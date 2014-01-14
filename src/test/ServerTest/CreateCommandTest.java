@@ -1,4 +1,4 @@
-package ServerTest;
+package test.ServerTest;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -50,7 +50,7 @@ public class CreateCommandTest {
 	public void testExecute_true()
 		throws Exception {
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		Auction auc= new Auction(0, 10000, user, null, 0.0, "muhkuhli");
@@ -65,29 +65,6 @@ public class CreateCommandTest {
 		//    java.lang.ArrayIndexOutOfBoundsException: 1
 		//       at Server.CreateCommand.execute(CreateCommand.java:25)
 		assertTrue(result);
-	}
-	/**
-	 * Run the boolean execute(String) method test.
-	 *
-	 * @throws Exception
-	 *
-	 * @generatedBy CodePro at 1/12/14 7:15 PM
-	 */
-	@Test
-	public void testExecute_worked()
-		throws Exception {
-		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
-		u.add(user);
-		ArrayList<Auction> a = new ArrayList<Auction>();
-		Auction auc= new Auction(0, 10000, user, null, 0.0, "muhkuhli");
-		a.add(auc);	
-		CreateCommand fixture = new CreateCommand(a,u);
-		String cmd = "!create 100 new stuff";
-
-		boolean result = fixture.execute(cmd, new ManageConnection(null, new CommandMapFactory(a, u)), "mimi", "1.1.1.1");
-
-		assertEquals(2,a.size());
 	}
 
 	/**
@@ -104,7 +81,7 @@ public class CreateCommandTest {
 		Auction auc= new Auction(0, 10000, null, null, 0.0, "muhkuhli");
 		a.add(auc);
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		CreateCommand fixture = new CreateCommand(a,u);
 
@@ -133,7 +110,7 @@ public class CreateCommandTest {
 		Auction auc= new Auction(0, 10000, null, null, 0.0, "muhkuhli");
 		a.add(auc);
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		CreateCommand fixture = new CreateCommand(a,u);
 		
@@ -162,7 +139,7 @@ public class CreateCommandTest {
 		Auction auc= new Auction(0, 10000, null, null, 0.0, "muhkuhli");
 		a.add(auc);
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		CreateCommand fixture = new CreateCommand(a,u);
 		
@@ -191,7 +168,7 @@ public class CreateCommandTest {
 		Auction auc= new Auction(0, 10000, null, null, 0.0, "muhkuhli");
 		a.add(auc);
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		CreateCommand fixture = new CreateCommand(a,u);
 		
@@ -220,7 +197,7 @@ public class CreateCommandTest {
 		Auction auc= new Auction(0, 10000, null, null, 0.0, "muhkuhli");
 		a.add(auc);
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		CreateCommand fixture = new CreateCommand(a,u);
 		
@@ -246,7 +223,7 @@ public class CreateCommandTest {
 	public void testExecute_userlistEmpty()
 		throws Exception {
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		Auction auc= new Auction(0, 10000, user, null, 0.0, "muhkuhli");

@@ -1,4 +1,4 @@
-package ServerTest;
+package test.ServerTest;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -51,8 +51,8 @@ public class BidCommandTest {
 		throws Exception {
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
-		User user2=new User("hansi", true, new Date(System.currentTimeMillis()), "2.2.2.2");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
+		User user2=new User("hansi", true, new Date(System.currentTimeMillis()), "2.2.2.2",1234);
 		u.add(user);
 		u.add(user2);
 		Auction auc= new Auction(0, 10000, user2, null, 0.0, "muhkuhli");
@@ -82,8 +82,8 @@ public class BidCommandTest {
 		throws Exception {
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
-		User user2=new User("hansi", true, new Date(System.currentTimeMillis()), "2.2.2.2");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
+		User user2=new User("hansi", true, new Date(System.currentTimeMillis()), "2.2.2.2",1234);
 		u.add(user);
 		u.add(user2);
 		Auction auc= new Auction(0, 10000, user2, null, 0.0, "muhkuhli");
@@ -113,8 +113,8 @@ public class BidCommandTest {
 		throws Exception {
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
-		User user2=new User("hansi", true, new Date(System.currentTimeMillis()), "2.2.2.2");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
+		User user2=new User("hansi", true, new Date(System.currentTimeMillis()), "2.2.2.2",1234);
 		u.add(user);
 		u.add(user2);
 		Auction auc= new Auction(0, 10000, user2, null, 0.0, "muhkuhli");
@@ -144,8 +144,8 @@ public class BidCommandTest {
 		throws Exception {
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
-		User user2=new User("hansi", true, new Date(System.currentTimeMillis()), "2.2.2.2");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
+		User user2=new User("hansi", true, new Date(System.currentTimeMillis()), "2.2.2.2",1234);
 		u.add(user);
 		u.add(user2);
 		Auction auc= new Auction(0, 10000, user2, null, 0.0, "muhkuhli");
@@ -174,8 +174,8 @@ public class BidCommandTest {
 		throws Exception {
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		ArrayList<User> u = new ArrayList<User>();
-		User user2=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
-		User user=new User("hansi",true, new Date(System.currentTimeMillis()), "2.2.2.2");
+		User user2=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
+		User user=new User("hansi",true, new Date(System.currentTimeMillis()), "2.2.2.2",1234);
 		u.add(user);
 		u.add(user2);
 		Auction auc= new Auction(0, 10000, user, null, 0.0, "muhkuhli");
@@ -204,8 +204,8 @@ public class BidCommandTest {
 		throws Exception {
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
-		User user2=new User("hansi", true, new Date(System.currentTimeMillis()), "2.2.2.2");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
+		User user2=new User("hansi", true, new Date(System.currentTimeMillis()), "2.2.2.2",1234);
 		u.add(user);
 		u.add(user2);
 		Auction auc= new Auction(0, 10000, user2, null, 0.0, "muhkuhli");
@@ -233,7 +233,7 @@ public class BidCommandTest {
 	public void testExecute_auctionEmpty()
 		throws Exception {
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		BidCommand fixture = new BidCommand(new ArrayList<Auction>(), u);
 		String cmd = "!bid 0 100";
@@ -260,8 +260,8 @@ public class BidCommandTest {
 		throws Exception {
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
-		User user2=new User("hansi", true, new Date(System.currentTimeMillis()), "2.2.2.2");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
+		User user2=new User("hansi", true, new Date(System.currentTimeMillis()), "2.2.2.2",1234);
 		u.add(user);
 		u.add(user2);
 		Auction auc= new Auction(0, 10000, user2, null, 20, "muhkuhli");
@@ -317,7 +317,7 @@ public class BidCommandTest {
 		throws Exception {
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		Auction auc= new Auction(0, 10000, user, null, 0.0, "muhkuhli");
 		a.add(auc);
@@ -345,7 +345,7 @@ public class BidCommandTest {
 		throws Exception {
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		Auction auc= new Auction(0, 10000, user, null, 0.0, "muhkuhli");
 		a.add(auc);
@@ -360,32 +360,6 @@ public class BidCommandTest {
 		//    java.lang.ArrayIndexOutOfBoundsException: 1
 		//       at Server.BidCommand.execute(BidCommand.java:26)
 		assertFalse(result);
-	}
-
-	/**
-	 * Run the boolean execute(String) method test.
-	 *
-	 * @throws Exception
-	 *
-	 * @generatedBy CodePro at 1/12/14 7:49 PM
-	 */
-	@Test
-	public void testExecute_worked()
-		throws Exception {
-		ArrayList<Auction> a = new ArrayList<Auction>();
-		ArrayList<User> u = new ArrayList<User>();
-		User user2=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
-		User user=new User("hansi",true, new Date(System.currentTimeMillis()), "2.2.2.2");
-		u.add(user);
-		u.add(user2);
-		Auction auc= new Auction(0, 10000, user, null, 0.0, "muhkuhli");
-		a.add(auc);
-		BidCommand fixture = new BidCommand(a, u);
-		String cmd = "!bid 0 100";
-		
-		boolean result = fixture.execute(cmd, new ManageConnection(null, new CommandMapFactory(a, u)), "mimi", "1.1.1.1");
-
-		assertEquals(100,a.get(0).getHighestbid(),0);
 	}
 
 	/**

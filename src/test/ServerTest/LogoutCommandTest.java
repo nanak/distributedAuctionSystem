@@ -1,4 +1,4 @@
-package ServerTest;
+package test.ServerTest;
 
 import java.net.Socket;
 import java.sql.Date;
@@ -51,7 +51,7 @@ public class LogoutCommandTest {
 		throws Exception {
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		LogoutCommand fixture = new LogoutCommand(u);
 		String cmd = "!logout";
@@ -59,6 +59,7 @@ public class LogoutCommandTest {
 
 		boolean result = fixture.execute(cmd, new ManageConnection(null, new CommandMapFactory(a, u)), "mimi", "1.1.1.1");
 
+		// add additional test code here
 		assertTrue(result);
 	}
 
@@ -74,7 +75,7 @@ public class LogoutCommandTest {
 		throws Exception {
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", false, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", false, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		LogoutCommand fixture = new LogoutCommand(u);
 		String cmd = "!logout";
@@ -98,7 +99,7 @@ public class LogoutCommandTest {
 		throws Exception {
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		LogoutCommand fixture = new LogoutCommand(new ArrayList<User>());
 		String cmd = "!logout";
@@ -122,7 +123,7 @@ public class LogoutCommandTest {
 		throws Exception {
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", false, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", false, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		LogoutCommand fixture = new LogoutCommand(u);
 		String cmd = "!logout";
@@ -132,29 +133,6 @@ public class LogoutCommandTest {
 
 		// add additional test code here
 		assertFalse(result);
-	}
-
-	/**
-	 * Run the boolean execute(String,ManageConnection,String,String) method test.
-	 *
-	 * @throws Exception
-	 *
-	 * @generatedBy CodePro at 1/13/14 2:18 AM
-	 */
-	@Test
-	public void testExecute_works()
-		throws Exception {
-		ArrayList<Auction> a = new ArrayList<Auction>();
-		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
-		u.add(user);
-		LogoutCommand fixture = new LogoutCommand(u);
-		String cmd = "!logout";
-
-
-		boolean result = fixture.execute(cmd, new ManageConnection(null, new CommandMapFactory(a, u)), "mimi", "1.1.1.1");
-
-		assertEquals(false, u.get(0).getOnline());
 	}
 
 	/**
