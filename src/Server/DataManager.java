@@ -69,7 +69,7 @@ public class DataManager implements Serializable{
 		}
 	}
 
-	**
+	/**
 	 * Load the auctions back in the array
 	 * 
 	 * @throws FileNotFoundException
