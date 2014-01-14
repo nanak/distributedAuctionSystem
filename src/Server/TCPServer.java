@@ -16,6 +16,7 @@ public class TCPServer implements Runnable{
 	
 	private int port;
 	private CommandMapFactory commands;
+	private boolean hasToRun = true;
 	/**
 	 * TCP Connection from Server
 	 * @param port Port of TCP
@@ -30,15 +31,23 @@ public class TCPServer implements Runnable{
 		int portNumber = port;
 		try{
 			ServerSocket serverSocket = new ServerSocket(portNumber);
-			while(true){
+//			serverSocket.setSoTimeout(1000);
+			while(hasToRun){
 				Socket p=serverSocket.accept();
 				Thread t=new Thread(new ManageConnection(p, commands));  
 				t.start();
 			}
+			serverSocket.close();
 		}catch (Exception e){
 			System.out.println("socket could not be created");
 		}
-		
 	}
+	
+	/**
+     * @param hasToRun the hasToRun to set
+     */
+    public void setHasToRun(boolean hasToRun) {
+        this.hasToRun = hasToRun;
+    }
 
 }

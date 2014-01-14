@@ -18,6 +18,8 @@ public class WatchDog implements Runnable {
 	private ArrayList<Auction> auction;
 	private ArrayList<User> user;
 	private Date currentDate;
+	private boolean hasToRun = true;
+
 
 	WatchDog(ArrayList<Auction> auction, ArrayList<User> user) {
 		this.auction = auction;
@@ -72,7 +74,7 @@ public class WatchDog implements Runnable {
 	}
 	@Override
 	public void run() {
-		while(true){
+		while(hasToRun){
 			checkUserActivity();
 			checkAuctionStatus();
 			try {
@@ -82,4 +84,11 @@ public class WatchDog implements Runnable {
 			}
 		}
 	}
+	
+	/**
+     * @param hasToRun the hasToRun to set
+     */
+    public void setHasToRun(boolean hasToRun) {
+        this.hasToRun = hasToRun;
+    }
 }
