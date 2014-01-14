@@ -29,10 +29,10 @@ public class Client {
 		this.serverListener=new ServerListener(udp);
 		new Thread(serverListener).start();
 		this.tcp=new TCPConnection(host, tcp);
-		listenConsole();
+		listenConsole(udp);
 	}
 
-	public void listenConsole(){
+	public void listenConsole(int udp){
 		BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
 		String username="";
 		String input;
@@ -46,7 +46,7 @@ public class Client {
 				}else{
 					if(input.startsWith("!login")||input.startsWith("!list")){
 						if(input.startsWith("!login")){
-							this.tcp.sendMessage(input);
+							this.tcp.sendMessage(input+"port:"+udp);
 						}else{
 							this.tcp.sendMessage(input);
 						}

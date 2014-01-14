@@ -75,7 +75,7 @@ public class ManageConnection implements Runnable {
 				msg[0]=b;
 				msg[1]="";
 			}
-			System.out.println(message);
+			System.out.println(ports[1]);
 			commands.runCommand(msg[0],this, msg[1],  socket.getInetAddress().getHostAddress());
 		}catch(Exception e){
 		//	e.printStackTrace();
