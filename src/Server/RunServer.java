@@ -1,6 +1,7 @@
 package Server;
 
-import Client.Client;
+import java.io.Console;
+import java.util.Scanner;
 
 /**
  * Test Class

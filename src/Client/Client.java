@@ -3,6 +3,7 @@ package Client;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 /**
  * The client of Auction System
@@ -17,7 +18,7 @@ public class Client {
 
 
 	private ServerListener serverListener;
-
+	private boolean stop=true;
 	/**
 	 * Client constructor
 	 * @param host	IP of the server
@@ -26,13 +27,16 @@ public class Client {
 	 */
 	public Client(String host, int tcp, int udp) {
 		this.serverListener=new ServerListener(udp);
-		new Thread(serverListener).start();
+		Thread t=new Thread(serverListener);
+		t.start();
 		this.tcp=new TCPConnection(host, tcp);
 		BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
 		String input = null;
 		String username="";
+		Scanner in = new Scanner(System.in);
+	 //   System.out.println(in.nextLine());
 		System.out.print("> ");
-		while (true) {		
+		while (stop) {		
 			try {
 				input = bufferRead.readLine();
 			} catch (IOException e1) {
@@ -62,7 +66,9 @@ public class Client {
 				username="";
 			}
 			if(input.equals("!end")){
-
+				stop=false;
+				shutdown();
+				
 			}
 
 		}
@@ -72,7 +78,7 @@ public class Client {
 	 * Shuts down the client and gives free the resources
 	 */
 	public void shutdown() {
-
+		serverListener.stop();
 	}
 
 }

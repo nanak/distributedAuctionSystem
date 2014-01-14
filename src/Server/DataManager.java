@@ -17,29 +17,13 @@ import java.util.List;
  * 
  */
 public class DataManager implements Serializable{
-
-	private static ArrayList<Auction> auctionlist;
-	FileOutputStream saveFile;
-	FileInputStream loadFile;
-
+	
 	/**
-	 * can save and load the auctions from a file
-	 * 
-	 * @param list
-	 *            auctions to be saved and loaded
+	 * Saves all auctions in the file
+	 * @param YourObject
+	 * @param filePath
+	 * @throws IOException
 	 */
-	public DataManager(ArrayList<Auction> list) {
-		this.auctionlist = list;
-		try {
-			saveFile = new FileOutputStream("store");
-			loadFile = new FileInputStream("store");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
 	public static void saveData(ArrayList YourObject, String filePath) throws IOException 
 	{ 
 		ObjectOutputStream outputStream = null; 

@@ -59,7 +59,7 @@ public class TCPConnection{
 					sendMessage(input+"&&"+username);
 					
 				}else{
-					if(input.startsWith("!login")||input.startsWith("!list")){
+					if(input.startsWith("!login")||input.startsWith("!list")||input.startsWith("!end")){
 						sendMessage(input);
 					}else if(input.equals("!info")){
 						System.out.print("Commands:\n!list\n!!login username\n!create duration description\n!bid auctionId amount\n!logout\n"+username+">");

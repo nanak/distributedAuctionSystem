@@ -11,6 +11,7 @@ import java.net.SocketException;
  */
 public class ServerListener implements Runnable{
 	DatagramSocket socket;
+	boolean run=true;
 	/**
 	 * The Listener for the UDP Connection
 	 * @param socket the datagram socket to check
@@ -30,12 +31,13 @@ public class ServerListener implements Runnable{
 	 */
 	public void waitForConnection() {
 		try{
-			while ( true ){
+			while ( run ){
 				// Auf Anfrage warten (DatagramPacket)
 				DatagramPacket packet = new DatagramPacket( new byte[1024], 1024 );
 				socket.receive( packet ); //tatsaechliches empfangen
 				System.out.println(new String(packet.getData()));
 			}
+			socket.close();
 		}catch (Exception e){
 			e.printStackTrace();
 		}
@@ -43,6 +45,10 @@ public class ServerListener implements Runnable{
 	@Override
 	public void run() {
 		waitForConnection();
+	}
+	
+	public void stop(){
+		run=false;
 	}
 }
 

@@ -28,7 +28,6 @@ public class Server{
 	 * @param tcp TCP Port
 	 */
 	public Server(int tcpport) {
-		data=new DataManager(auction);
 		auction=new ArrayList<Auction>();
 		try {
 			auction=data.loadData("backup.dat");
