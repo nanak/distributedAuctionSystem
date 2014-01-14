@@ -32,7 +32,7 @@ public class Server{
 		auction=new ArrayList<Auction>();
 		try {
 			auction=data.loadData("backup.dat");
-		} catch (ClassNotFoundException | IOException e) {
+		} catch (NullPointerException | ClassNotFoundException | IOException e) {
 			auction=new ArrayList<Auction>();
 		}
 		data=new DataManager(auction);
