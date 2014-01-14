@@ -128,12 +128,13 @@ public class DataManager implements Serializable{
 		} 
 		catch(FileNotFoundException ex) 
 		{ 
-			ex.printStackTrace(); 
+			return new ArrayList<Auction>();
+			//ex.printStackTrace(); 
 		} 
 		catch(IOException ex) 
 		{ 
-			ex.printStackTrace(); 
+			return new ArrayList<Auction>();
+			//ex.printStackTrace(); 
 		}
-		return auctionlist; 
 	} 
 }

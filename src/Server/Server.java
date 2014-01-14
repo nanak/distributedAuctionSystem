@@ -1,13 +1,11 @@
 package Server;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 /**
  * Server class
- * @author nanak
+ * @author tobi
  *
  */
 public class Server{
@@ -35,8 +33,7 @@ public class Server{
 		try {
 			auction=data.loadData("backup.dat");
 		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			auction=new ArrayList<Auction>();
 		}
 		data=new DataManager(auction);
 		//data.loadData();
