@@ -40,6 +40,7 @@ public class DataManager implements Serializable{
 
 	}
 
+<<<<<<< HEAD
 	public static void saveData(ArrayList YourObject, String filePath) throws IOException 
 	{ 
 		ObjectOutputStream outputStream = null; 
@@ -50,11 +51,11 @@ public class DataManager implements Serializable{
 		} 
 		catch(FileNotFoundException ex) 
 		{ 
-			//ex.printStackTrace(); 
+			ex.printStackTrace(); 
 		} 
 		catch(IOException ex) 
 		{ 
-			//ex.printStackTrace(); 
+			ex.printStackTrace(); 
 		} 
 		finally 
 		{ 
@@ -68,7 +69,7 @@ public class DataManager implements Serializable{
 			} 
 			catch(IOException ex) 
 			{ 
-				//ex.printStackTrace(); 
+				ex.printStackTrace(); 
 			} 
 		} 
 	} 
@@ -85,15 +86,68 @@ public class DataManager implements Serializable{
 		} 
 		catch(FileNotFoundException ex) 
 		{ 
-			//ex.printStackTrace(); 
+			ex.printStackTrace(); 
 			return new ArrayList<Auction>();
 			//ex.printStackTrace(); 
 		} 
 		catch(IOException ex) 
 		{ 
-			//ex.printStackTrace(); 
+			ex.printStackTrace(); 
 			return new ArrayList<Auction>();
 			//ex.printStackTrace(); 
 		}
 	} 
+=======
+	/**
+	 * Save the auctions in file
+	 */
+	public  void saveData(ArrayList YourObject, String filePath)
+			throws IOException {
+		ObjectOutputStream outputStream = null;
+		try {
+			outputStream = new ObjectOutputStream(
+					new FileOutputStream(filePath));
+			outputStream.writeObject(YourObject);
+		} catch (FileNotFoundException ex) {
+			System.err.println("File not Found");
+			// ex.printStackTrace();
+		} catch (IOException ex) {
+			System.err.println("IOException");
+			// ex.printStackTrace();
+		} finally {
+			try {
+				if (outputStream != null) {
+					outputStream.flush();
+					outputStream.close();
+				}
+			} catch (IOException ex) {
+				System.err.println("IOException");
+				// ex.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * Load the auctions back in the array
+	 * 
+	 * @throws FileNotFoundException
+	 */
+	public ArrayList loadData(String filePath) throws IOException,
+			ClassNotFoundException {
+		try {
+			FileInputStream fileIn = new FileInputStream(filePath);
+			ObjectInputStream in = new ObjectInputStream(fileIn);
+			ArrayList l = (ArrayList) in.readObject();
+			// System.out.println(((Auction)l.get(0)).getDescription());
+			return l;
+		} catch (FileNotFoundException ex) {
+			System.err.println("File not found");
+			// ex.printStackTrace();
+		} catch (IOException ex) {
+			System.err.println("IOException");
+			ex.printStackTrace();
+		}
+		return auctionlist;
+	}
+>>>>>>> 05fbdfbc2fec7c8acd2ac15a3c231a09938da81d
 }

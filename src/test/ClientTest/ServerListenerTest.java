@@ -1,4 +1,4 @@
-package ClientTest;
+package test.ClientTest;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;

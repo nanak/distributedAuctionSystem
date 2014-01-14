@@ -1,4 +1,4 @@
-package ClientTest;
+package test.ClientTest;
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.RunWith;
