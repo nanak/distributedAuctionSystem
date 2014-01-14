@@ -363,6 +363,32 @@ public class BidCommandTest {
 	}
 
 	/**
+	 * Run the boolean execute(String) method test.
+	 *
+	 * @throws Exception
+	 *
+	 * @generatedBy CodePro at 1/12/14 7:49 PM
+	 */
+	@Test
+	public void testExecute_worked()
+		throws Exception {
+		ArrayList<Auction> a = new ArrayList<Auction>();
+		ArrayList<User> u = new ArrayList<User>();
+		User user2=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("hansi",true, new Date(System.currentTimeMillis()), "2.2.2.2");
+		u.add(user);
+		u.add(user2);
+		Auction auc= new Auction(0, 10000, user, null, 0.0, "muhkuhli");
+		a.add(auc);
+		BidCommand fixture = new BidCommand(a, u);
+		String cmd = "!bid 0 100";
+		
+		boolean result = fixture.execute(cmd, new ManageConnection(null, new CommandMapFactory(a, u)), "mimi", "1.1.1.1");
+
+		assertEquals(100,a.get(0).getHighestbid(),0);
+	}
+
+	/**
 	 * Perform pre-test initialization.
 	 *
 	 * @throws Exception

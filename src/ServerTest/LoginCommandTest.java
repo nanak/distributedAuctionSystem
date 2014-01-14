@@ -187,6 +187,55 @@ public class LoginCommandTest {
 	}
 
 	/**
+	 * Run the boolean execute(String,ManageConnection,String,String) method test.
+	 *
+	 * @throws Exception
+	 *
+	 * @generatedBy CodePro at 1/13/14 2:18 AM
+	 */
+	@Test
+	public void testExecute_newUserWorks()
+		throws Exception {
+		ArrayList<Auction> a = new ArrayList<Auction>();
+		ArrayList<User> u = new ArrayList<User>();
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		u.add(user);
+		
+		LoginCommand fixture = new LoginCommand(u);
+		String cmd = "!login muhkuh";
+
+
+		boolean result = fixture.execute(cmd, new ManageConnection(null, new CommandMapFactory(a, u)), "", "1.1.1.1");
+
+		assertEquals(true, u.get(0).getOnline());
+	}
+
+	/**
+	 * Run the boolean execute(String,ManageConnection,String,String) method test.
+	 * Here I start if the user is actually set to "oline"
+	 *
+	 * @throws Exception
+	 *
+	 * @generatedBy CodePro at 1/13/14 2:18 AM
+	 */
+	@Test
+	public void testExecute_oldUserWorks()
+		throws Exception {
+		ArrayList<Auction> a = new ArrayList<Auction>();
+		ArrayList<User> u = new ArrayList<User>();
+		User user=new User("mimi", false, new Date(System.currentTimeMillis()), "1.1.1.1");
+		u.add(user);
+		
+		LoginCommand fixture = new LoginCommand(u);
+		String cmd = "!login mimi";
+
+		boolean result = fixture.execute(cmd, new ManageConnection(null, new CommandMapFactory(a, u)), "", "1.1.1.1");
+
+		// add additional test code here
+		assertEquals(true, u.get(0).getOnline());
+	}
+
+	/**
 	 * Perform pre-test initialization.
 	 *
 	 * @throws Exception
