@@ -73,6 +73,7 @@ public class DataManager implements Serializable{
 		} 
 	} 
 
+	@SuppressWarnings("unused")
 	public static ArrayList loadData(String filePath) throws IOException, ClassNotFoundException 
 	{ 
 		try 
@@ -80,8 +81,15 @@ public class DataManager implements Serializable{
 			FileInputStream fileIn = new FileInputStream(filePath); 
 			ObjectInputStream in = new ObjectInputStream(fileIn); 
 			ArrayList l=(ArrayList) in.readObject();
-			//System.out.println(((Auction)l.get(0)).getDescription());
-			return l; 
+			if(l==null){
+				return new ArrayList<Auction>();
+			}
+			else if(l.size()==0){
+				return new ArrayList<Auction>();
+			}
+			else{
+				return l; 
+			}
 		} 
 		catch(FileNotFoundException ex) 
 		{ 
