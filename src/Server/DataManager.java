@@ -40,49 +40,6 @@ public class DataManager implements Serializable{
 
 	}
 
-	/**
-	 * Save the auctions in file
-	 */
-	public void saveData() {
-		try {
-			ObjectOutputStream save = new ObjectOutputStream(saveFile);
-			// System.out.println(save.);s
-			save.writeObject(auctionlist);
-			//save.writeInt(auctionlist.size());
-			save.flush();
-			save.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println("Could not be saved");
-		}
-
-	}
-
-	/**
-	 * Load the auctions back in the array
-	 * 
-	 * @throws FileNotFoundException
-	 */
-	@SuppressWarnings("unchecked")
-	public void loadData(){
-		try {
-			//System.out.println(loadFile.available());
-			//while(loadFile.available()>0){// only creates the Stream when the File is filled with Data
-			ObjectInputStream load = new ObjectInputStream(loadFile);
-			Object obj = load.readObject();
-			List auctionlistl = (List<Auction>) obj;
-			System.out.println(auctionlistl.size());
-			load.close();
-			//			}
-		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
-
-			System.out.println("File not found");
-			auctionlist = new ArrayList<Auction>();
-		}
-	}
-
-
 	public static void saveData(ArrayList YourObject, String filePath) throws IOException 
 	{ 
 		ObjectOutputStream outputStream = null; 
@@ -128,11 +85,13 @@ public class DataManager implements Serializable{
 		} 
 		catch(FileNotFoundException ex) 
 		{ 
+			ex.printStackTrace(); 
 			return new ArrayList<Auction>();
 			//ex.printStackTrace(); 
 		} 
 		catch(IOException ex) 
 		{ 
+			ex.printStackTrace(); 
 			return new ArrayList<Auction>();
 			//ex.printStackTrace(); 
 		}
