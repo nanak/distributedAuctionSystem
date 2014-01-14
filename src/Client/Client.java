@@ -15,8 +15,6 @@ import java.util.Scanner;
 public class Client {
 
 	private TCPConnection tcp;
-
-
 	private ServerListener serverListener;
 	private boolean stop=true;
 	/**
@@ -30,6 +28,9 @@ public class Client {
 		Thread t=new Thread(serverListener);
 		t.start();
 		this.tcp=new TCPConnection(host, tcp);
+		listenConsole();
+	}
+	public void listenConsole(){
 		BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
 		String input = null;
 		String username="";
@@ -39,17 +40,21 @@ public class Client {
 		while (stop) {		
 			try {
 				input = bufferRead.readLine();
-			} catch (IOException e1) {
+				} catch (IOException e1) {
 				System.out.println("cant read command line");
 			}
 			try {
 				if(!username.equals("")){
-					this.tcp.sendMessage(input+"&&"+username);
-				}else{
-					if(input.startsWith("!login")||input.startsWith("!list")){
-						this.tcp.sendMessage(input);
-					}else{
-						System.out.print("Allowed commands: !login !list\n> ");
+					if(input.equals("!info")){
+						System.out.print("Commands:\n!list\n!!login username\n!create duration description\n!bid auctionId amount\n!logout\n"+username+">");
+					}
+					else if(input.equals("!end")){
+						this.tcp.sendMessage("!logout");
+						stop=false;
+						shutdown();
+					}	
+					else{
+						this.tcp.sendMessage(input+"&&"+username);
 					}
 				}
 			} catch (IOException e) {
@@ -62,15 +67,16 @@ public class Client {
 					username="";
 				}
 			}
+			else if(input.equals("!info")){
+				System.out.print("Commands:\n!list\n!!login username\n!create duration description\n!bid auctionId amount\n!logout\n"+username+">");
+			}
 			if(input.equals("!logout")){
 				username="";
 			}
 			if(input.equals("!end")){
 				stop=false;
 				shutdown();
-				
 			}
-
 		}
 	}
 
