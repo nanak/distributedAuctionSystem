@@ -35,6 +35,7 @@ public class LoginCommand implements Command {
 	public boolean execute(String cmd, ManageConnection con, String name, String ip) {
 		//!login <username>
 		//login only allowed for non-logged in users
+		System.out.println(cmd);
 		if(!name.equals("")){
 		
 			con.send("You are already loggen in as "+name+". Please log out before logging in with another user.\n"+name+"> ");
@@ -56,6 +57,7 @@ public class LoginCommand implements Command {
 		boolean exists=false;
 		User login=null;
 		String loggername=s[1];
+		System.out.println(cmd);
 		if(!userlist.isEmpty()){
 			for(int i=0; i<userlist.size(); i++){
 				if(userlist.get(i).getName().equals(loggername)){
@@ -81,7 +83,7 @@ public class LoginCommand implements Command {
 		}
 		else{
 			//if the  user is not in the list yet, create the user with the status online=true and save him in the userlist
-			login = new User(loggername, true, new Date(), ip);
+			login = new User(loggername, true, new Date(), ip, 1234);
 			userlist.add(login);
 			con.send("Successfully logged in as "+loggername+"!"+"\n"+loggername+"> ");
 			return true;

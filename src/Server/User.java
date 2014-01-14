@@ -23,6 +23,8 @@ public class User implements Serializable{
 	private Date lastSeen;
 
 	private String ip;
+	
+	private int udpport;
 	/**
 	 * User Model Constructor
 	 * @param name username
@@ -30,12 +32,13 @@ public class User implements Serializable{
 	 * @param notifications notifications to send
 	 * @param lastSeen last action
 	 */
-	public User(String name, boolean online, Date lastSeen, String ip){
+	public User(String name, boolean online, Date lastSeen, String ip, int udpport){
 		this.name=name;
 		this.online=online;
 		this.notifications=new ArrayList<Notification>();
 		this.lastSeen=lastSeen;
 		this.ip=ip;
+		this.udpport=udpport;
 	}
 
 	public void getNotifications() {
@@ -88,7 +91,7 @@ public class User implements Serializable{
 				String s = message;
 				byte[] data = s.getBytes();
 				//Zum senden und empfangen wird DatagramPacket verwendet
-				DatagramPacket packet = new DatagramPacket( data, data.length, ia, 1234 );
+				DatagramPacket packet = new DatagramPacket( data, data.length, ia, udpport );
 				//@SuppressWarnings("resource")
 				//dieses packet wird ueber das DatagramSocket versendet
 				toSocket.send( packet ); //tatsaechliches senden

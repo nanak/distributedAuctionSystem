@@ -68,15 +68,17 @@ public class ManageConnection implements Runnable {
 			int length = in.read(buffer, 0, 200); // blockiert bis Nachricht empfangen
 			String message = new String(buffer, 0, length);
 			String []msg=message.split("&&");
+			String []ports=message.split("port:");
 			String b=msg[0];
 			if(msg.length<2){
 				msg=new String[2];
 				msg[0]=b;
 				msg[1]="";
 			}
+			System.out.println(message);
 			commands.runCommand(msg[0],this, msg[1],  socket.getInetAddress().getHostAddress());
 		}catch(Exception e){
-			
+		//	e.printStackTrace();
 		}
 	}
 
