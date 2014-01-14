@@ -1,6 +1,7 @@
 package Server;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
@@ -30,10 +31,16 @@ public class Server{
 	 */
 	public Server(int tcpport) {
 
-
-		data=new DataManager(auction);
 		auction=new ArrayList<Auction>();
-		data.loadData();
+		try {
+			auction=data.loadData("backup.dat");
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		data=new DataManager(auction);
+		//data.loadData();
+		
 		user=new ArrayList<User>();
 		commands=new CommandMapFactory(auction, user);
 		this.tcp=new TCPServer(tcpport, commands);
@@ -47,7 +54,8 @@ public class Server{
 				try {
 					System.out.print("Press any key to exit");
 					System.in.read();
-					data.saveData();
+					//data.saveData();
+					data.saveData(auction,"backup.dat");
 					System.out.println("Server is saving data and shutting down");
 					System.exit(1);
 				} catch (IOException e) {

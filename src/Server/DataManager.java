@@ -1,18 +1,14 @@
 package Server;
 
-import java.io.BufferedInputStream;
-import java.io.EOFException;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.sql.Time;
+import java.io.Serializable;
 import java.util.ArrayList;
-//still needs changes.
-import java.util.Date;
+import java.util.List;
 
 /**
  * Manages the auctions and everything who needs to needs to be stored
@@ -20,9 +16,9 @@ import java.util.Date;
  * @author Daniel,Tobi
  * 
  */
-public class DataManager {
+public class DataManager implements Serializable{
 
-	private ArrayList<Auction> auctionlist;
+	private static ArrayList<Auction> auctionlist;
 	FileOutputStream saveFile;
 	FileInputStream loadFile;
 
@@ -33,6 +29,7 @@ public class DataManager {
 	 *            auctions to be saved and loaded
 	 */
 	public DataManager(ArrayList<Auction> list) {
+		this.auctionlist = list;
 		try {
 			saveFile = new FileOutputStream("store");
 			loadFile = new FileInputStream("store");
@@ -40,7 +37,7 @@ public class DataManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.auctionlist = list;
+
 	}
 
 	/**
@@ -55,6 +52,7 @@ public class DataManager {
 			save.flush();
 			save.close();
 		} catch (IOException e) {
+			e.printStackTrace();
 			System.out.println("Could not be saved");
 		}
 
@@ -68,12 +66,14 @@ public class DataManager {
 	@SuppressWarnings("unchecked")
 	public void loadData(){
 		try {
-			while(loadFile.available()>0){// only creates the Stream when the File is filled with Data
+			//System.out.println(loadFile.available());
+			//while(loadFile.available()>0){// only creates the Stream when the File is filled with Data
 			ObjectInputStream load = new ObjectInputStream(loadFile);
 			Object obj = load.readObject();
-			auctionlist = (ArrayList<Auction>) obj;
+			List auctionlistl = (List<Auction>) obj;
+			System.out.println(auctionlistl.size());
 			load.close();
-			}
+			//			}
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 
@@ -81,4 +81,59 @@ public class DataManager {
 			auctionlist = new ArrayList<Auction>();
 		}
 	}
+
+
+	public static void saveData(ArrayList YourObject, String filePath) throws IOException 
+	{ 
+		ObjectOutputStream outputStream = null; 
+		try 
+		{ 
+			outputStream = new ObjectOutputStream(new FileOutputStream(filePath)); 
+			outputStream.writeObject(YourObject); 
+		} 
+		catch(FileNotFoundException ex) 
+		{ 
+			ex.printStackTrace(); 
+		} 
+		catch(IOException ex) 
+		{ 
+			ex.printStackTrace(); 
+		} 
+		finally 
+		{ 
+			try 
+			{ 
+				if(outputStream != null) 
+				{ 
+					outputStream.flush(); 
+					outputStream.close(); 
+				} 
+			} 
+			catch(IOException ex) 
+			{ 
+				ex.printStackTrace(); 
+			} 
+		} 
+	} 
+
+	public static ArrayList loadData(String filePath) throws IOException, ClassNotFoundException 
+	{ 
+		try 
+		{ 
+			FileInputStream fileIn = new FileInputStream(filePath); 
+			ObjectInputStream in = new ObjectInputStream(fileIn); 
+			ArrayList l=(ArrayList) in.readObject();
+			//System.out.println(((Auction)l.get(0)).getDescription());
+			return l; 
+		} 
+		catch(FileNotFoundException ex) 
+		{ 
+			ex.printStackTrace(); 
+		} 
+		catch(IOException ex) 
+		{ 
+			ex.printStackTrace(); 
+		}
+		return auctionlist; 
+	} 
 }

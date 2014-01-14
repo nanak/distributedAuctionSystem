@@ -1,5 +1,6 @@
 package Server;
 
+import java.io.Serializable;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -11,7 +12,7 @@ import java.util.Date;
  * @author Tobi
  *
  */
-public class User {
+public class User implements Serializable{
 
 	private String name;
 

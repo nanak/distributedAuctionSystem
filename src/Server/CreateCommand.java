@@ -56,7 +56,7 @@ public class CreateCommand implements Command {
 		try{
 			duration=Integer.parseInt(s[1]);
 		 }catch(NumberFormatException e){
-			 con.send("Create not possible. The duration "+s[1]+" is not a number"+"\n"+name+"> ");
+			 con.send("Create not possible. The duration "+s[1]+" is not a number. !create <duration> <description>"+"\n"+name+"> ");
 			 return false;
 		}
 		int id=auctionlist.size();
