@@ -28,8 +28,7 @@ import ClientTest.ServerListenerTest;
 	NotifiyTest.class,
 	ServerclasTest.class,
 	UserTest.class,
-	RunServerTest.class,
-	ServerListenerTest.class
+	RunServerTest.class
 })
 public class TestAll {
 

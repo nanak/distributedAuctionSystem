@@ -81,7 +81,7 @@ public class LoginCommand implements Command {
 		}
 		else{
 			//if the  user is not in the list yet, create the user with the status online=true and save him in the userlist
-			login = new User(loggername, true, new Date(), ip);
+			login = new User(loggername, true, new Date(), ip,1234);
 			userlist.add(login);
 			con.send("Successfully logged in as "+loggername+"!"+"\n"+loggername+"> ");
 			return true;

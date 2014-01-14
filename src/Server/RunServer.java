@@ -1,5 +1,7 @@
 package Server;
 
+import Client.Client;
+
 /**
  * Test Class
  * @author Tobi
@@ -7,7 +9,11 @@ package Server;
  */
 public class RunServer{
 	public static void main (String [] args){
-		Server s=new Server(1111);
+		if(args.length==1){
+			Server s=new Server(Integer.parseInt(args[0]));
+		}else{
+			Server s=new Server(1111);
+		};
 	}	 
 }
  

@@ -30,7 +30,7 @@ public class User implements Serializable{
 	 * @param notifications notifications to send
 	 * @param lastSeen last action
 	 */
-	public User(String name, boolean online, Date lastSeen, String ip){
+	public User(String name, boolean online, Date lastSeen, String ip, int port){
 		this.name=name;
 		this.online=online;
 		this.notifications=new ArrayList<Notification>();
