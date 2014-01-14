@@ -1,4 +1,4 @@
-package ServerTest;
+package test.ServerTest;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -50,7 +50,7 @@ public class CreateCommandTest {
 	public void testExecute_true()
 		throws Exception {
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		Auction auc= new Auction(0, 10000, user, null, 0.0, "muhkuhli");
@@ -81,7 +81,7 @@ public class CreateCommandTest {
 		Auction auc= new Auction(0, 10000, null, null, 0.0, "muhkuhli");
 		a.add(auc);
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		CreateCommand fixture = new CreateCommand(a,u);
 
@@ -110,7 +110,7 @@ public class CreateCommandTest {
 		Auction auc= new Auction(0, 10000, null, null, 0.0, "muhkuhli");
 		a.add(auc);
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		CreateCommand fixture = new CreateCommand(a,u);
 		
@@ -139,7 +139,7 @@ public class CreateCommandTest {
 		Auction auc= new Auction(0, 10000, null, null, 0.0, "muhkuhli");
 		a.add(auc);
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		CreateCommand fixture = new CreateCommand(a,u);
 		
@@ -168,7 +168,7 @@ public class CreateCommandTest {
 		Auction auc= new Auction(0, 10000, null, null, 0.0, "muhkuhli");
 		a.add(auc);
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		CreateCommand fixture = new CreateCommand(a,u);
 		
@@ -197,7 +197,7 @@ public class CreateCommandTest {
 		Auction auc= new Auction(0, 10000, null, null, 0.0, "muhkuhli");
 		a.add(auc);
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		CreateCommand fixture = new CreateCommand(a,u);
 		
@@ -223,7 +223,7 @@ public class CreateCommandTest {
 	public void testExecute_userlistEmpty()
 		throws Exception {
 		ArrayList<User> u = new ArrayList<User>();
-		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1");
+		User user=new User("mimi", true, new Date(System.currentTimeMillis()), "1.1.1.1",1234);
 		u.add(user);
 		ArrayList<Auction> a = new ArrayList<Auction>();
 		Auction auc= new Auction(0, 10000, user, null, 0.0, "muhkuhli");
